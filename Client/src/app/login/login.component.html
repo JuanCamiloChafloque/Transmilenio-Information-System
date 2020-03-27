@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transmilenio | Login</title>
+    <meta charset="utf-8">
+    <meta name="application-name" content="myApp">
+    <meta name="author" content="Juan Camilo Chafloque y Sergio Posada">
+  </head>
+  <body>
+    <div class="login-box">
+      <h1>Login</h1>
+      <div class="text-box">
+        <input type="text" placeholder="username" [(ngModel)]="username">
+      </div>
+      <div class="text-box">
+        <input type="password" placeholder="password" [(ngModel)]="password">
+      </div>
+      <button (click)=iniciarSesion() type="submit">Ingresar</button>
+      <div class="msg-box">
+        {{message}}
+      </div>
+    </div>
+  </body>
+</html>

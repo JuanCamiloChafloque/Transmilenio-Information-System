@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transmilenio | Editar Bus</title>
+  <meta charset="utf-8">
+  <meta name="application-name" content="myApp">
+  <meta name="author" content="Juan Camilo Chafloque y Sergio Posada">
+</head>
+  <body *ngIf="bus != null">
+
+    <div class="title">
+      <h2>Editar Bus</h2>
+    </div>
+
+    <div class="form">
+      <p>Modelo</p>
+      <input type="text" class="field" [(ngModel)]="bus.modelo">
+      <p>Placa</p>
+      <input type="text" class="field" [(ngModel)]="bus.placa">
+
+    </div>
+
+    <div class="btn-box">
+      <button (click)=edit()>Guardar</button>
+      <button (click)=cancel()>Cancelar</button><br>
+    </div>
+
+
+  </body>
+</html>

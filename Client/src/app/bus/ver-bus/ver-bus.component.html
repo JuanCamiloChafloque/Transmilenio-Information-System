@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Transmilenio | Ver Bus</title>
+    <meta charset="utf-8">
+    <meta name="application-name" content="myApp">
+    <meta name="author" content="Juan Camilo Chafloque y Sergio Posada">
+  </head>
+  <body *ngIf="bus != null">
+    <div class="title">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Aiga_bus_on_green_circle.svg" alt="Bus Logo...">
+      <h2>Bus: {{bus.id}}</h2>
+    </div>
+
+    <div class="info-box">
+      <div class="info">
+        <label class="tag">Id</label><br>
+        <label>{{bus.id}}</label><br>
+      </div>
+      <div class="info">
+        <label class="tag">Modelo</label><br>
+        <label class="tag-info">{{bus.modelo}}</label><br>
+      </div>
+      <div class="info">
+        <label class="tag">Placa</label><br>
+        <label class="tag-info">{{bus.placa}}</label><br>
+      </div>
+    </div>
+
+    <div class="btn-box">
+      <button [routerLink]="['/editarBus/', bus.id]">Editar</button>
+      <button [routerLink]="['/paginaPrincipalBuses']" (click)=eliminarBus(bus.id)>Eliminar</button>
+      <button (click)=volverLista()>Volver</button>
+    </div>
+
+  </body>
+</html>
+

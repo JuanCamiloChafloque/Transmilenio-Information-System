@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transmilenio | Editar Conductor</title>
+  <meta charset="utf-8">
+  <meta name="application-name" content="myApp">
+  <meta name="author" content="Juan Camilo Chafloque y Sergio Posada">
+</head>
+  <body *ngIf="conductor != null">
+
+    <div class="title">
+      <h2>Editar Conductor</h2>
+    </div>
+
+    <div class="form">
+      <p>Nombre</p>
+      <input type="text" class="field" [(ngModel)]="conductor.name">
+      <p>Cedula</p>
+      <input type="text" class="field" [(ngModel)]="conductor.cedula">
+      <p>Telefono</p>
+      <input type="text" class="field" [(ngModel)]="conductor.telefono">
+      <p>Dirección</p>
+      <input type="text" class="field" [(ngModel)]="conductor.direccion">
+    </div>
+
+    <div class="btn-box">
+      <button (click)=edit()>Guardar</button>
+      <button (click)=cancel()>Cancelar</button><br>
+    </div>
+
+
+  </body>
+</html>
