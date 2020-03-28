@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { CrearConductorComponent } from './conductor/crear-conductor/crear-conductor.component';
 import { EditarConductorComponent } from './conductor/editar-conductor/editar-conductor.component';
@@ -14,9 +15,13 @@ import { EditarBusComponent } from './bus/editar-bus/editar-bus.component';
 import { ListaBusComponent } from './bus/lista-bus/lista-bus.component';
 import { VerBusComponent } from './bus/ver-bus/ver-bus.component';
 import { MainPageLoginComponent } from './mainPage/main-page-login/main-page-login.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ConductorService } from './conductor/shared/conductor.service';
 import { BusService } from './bus/shared/bus.service';
+import { VerRutaComponent } from './ruta/ver-ruta/ver-ruta.component';
+import { ListaRutaComponent } from './ruta/lista-ruta/lista-ruta.component';
+import { CrearRutaComponent } from './ruta/crear-ruta/crear-ruta.component';
+import { EditarRutaComponent } from './ruta/editar-ruta/editar-ruta.component';
+import { RutaService } from './ruta/shared/ruta.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,11 @@ import { BusService } from './bus/shared/bus.service';
     EditarBusComponent,
     ListaBusComponent,
     VerBusComponent,
-    MainPageLoginComponent
+    MainPageLoginComponent,
+    VerRutaComponent,
+    ListaRutaComponent,
+    CrearRutaComponent,
+    EditarRutaComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +49,8 @@ import { BusService } from './bus/shared/bus.service';
   ],
   providers: [
     ConductorService,
-    BusService
+    BusService,
+    RutaService
   ],
   bootstrap: [AppComponent]
 })

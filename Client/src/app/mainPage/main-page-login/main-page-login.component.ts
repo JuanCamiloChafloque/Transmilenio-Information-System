@@ -38,7 +38,7 @@ export class MainPageLoginComponent implements OnInit {
   }
 
   menuRutas( ) {
-
+    this.router.navigate(['/paginaPrincipalRutas']);
   }
 
   logout( ) {

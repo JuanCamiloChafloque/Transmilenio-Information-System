@@ -1,8 +1,15 @@
 package com.example.example2.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Estacion {
@@ -13,31 +20,31 @@ public class Estacion {
 
     private String nombre;
 
-    /**
-     * @return the id
-     */
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
+    private Set<Ruta> rutas;
+
     public Long getId() {
         return idEstacion;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(Long id) {
         this.idEstacion = id;
     }
 
-    /**
-     * @return the nombre
-     */
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Set<Ruta> getRutas() {
+        return rutas;
+    }
+
+    public void setRutas(Set<Ruta> rutas) {
+        this.rutas = rutas;
     }
 }
