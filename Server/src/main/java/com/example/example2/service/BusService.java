@@ -40,7 +40,6 @@ public class BusService {
         Bus busEncontrado = buscarBus(busId);
         busEncontrado.setModelo(busData.getModelo());
         busEncontrado.setPlaca(busData.getPlaca());
-        busEncontrado.setConductores(busData.getConductores());
 
         return repository.save(busEncontrado);
     }

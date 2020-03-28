@@ -21,7 +21,7 @@ public class Conductor {
     private String telefono;
     private String direccion;
 
-    @OneToMany(mappedBy = "conductorId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "conductorId", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
     @JsonIgnore
     private List<ConductorXBus> buses;
 

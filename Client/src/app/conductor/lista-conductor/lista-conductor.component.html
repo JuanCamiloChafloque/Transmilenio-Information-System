@@ -1,48 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Transmilenio | Lista Conductores</title>
-    <meta charset="utf-8">
-    <meta name="application-name" content="myApp">
-    <meta name="author" content="Juan Camilo Chafloque y Sergio Posada">
-  </head>
-  <body>
+<div class="container">
 
-    <div class="title">
-      <h2>Conductores</h2>
-    </div>
+  <div class="title">
+    <h2>Conductores</h2>
+  </div>
 
-    <div class="tbl-box">
-      <table class="content-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Cedula</th>
-            <th>Telefono</th>
-            <th>Dirección</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let conductor of conductores">
-            <td>
-              <a [routerLink]="['/informacionConductor/', conductor.id]">{{conductor.id}}</a>
-            </td>
-            <td>{{conductor.name}}</td>
-            <td>{{conductor.cedula}}</td>
-            <td>{{conductor.telefono}}</td>
-            <td>{{conductor.direccion}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="tbl-box">
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Cedula</th>
+          <th>Telefono</th>
+          <th>Dirección</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let conductor of conductores">
+          <td>
+            <a [routerLink]="['/informacionConductor/', conductor.id]">{{conductor.id}}</a>
+          </td>
+          <td>{{conductor.name}}</td>
+          <td>{{conductor.cedula}}</td>
+          <td>{{conductor.telefono}}</td>
+          <td>{{conductor.direccion}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <div class="btn-box">
-      <button [routerLink]="['/crearConductor']">Crear Conductor</button>
-      <button [routerLink]="['/paginaPrincipalLogin']">Volver a Pagina Principal</button>
-    </div>
+  <div class="btn-box">
+    <button [routerLink]="['/crearConductor']">Crear Conductor</button>
+    <button [routerLink]="['/paginaPrincipalLogin']">Volver a Pagina Principal</button>
+  </div>
 
-    {{errorMessage}}
+  {{errorMessage}}
 
-  </body>
-</html>
+</div>

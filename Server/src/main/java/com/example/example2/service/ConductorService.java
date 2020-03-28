@@ -1,7 +1,14 @@
 package com.example.example2.service;
 
+import com.example.example2.model.Bus;
 import com.example.example2.model.Conductor;
 import com.example.example2.model.ConductorRepository;
+import com.example.example2.model.ConductorXBus;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.example.example2.exceptions.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +38,22 @@ public class ConductorService {
         return repository.findById(conductorId).orElseThrow(() -> new NotFoundException("Conductor no encontrado"));
     }
 
+    @GetMapping("/informacionConductor/{id}/buses")
+    public Iterable<Bus> getBuses(@PathVariable("id") Long conductorId) {
+        
+        List<Bus> buses = new ArrayList<Bus>();
+        Iterator<ConductorXBus> lista = repository.findById(conductorId).get().getBuses().iterator();
+        while(lista.next() != null){
+            ConductorXBus actual = lista.next();
+            if(actual.getConductorId().getId() == conductorId){
+                buses.add(actual.getBusId());
+            }
+        }
+
+        return buses;
+    
+    }
+
     @PostMapping("/crearConductor")
     public Conductor crearConductor(@RequestBody Conductor conductor) {
         return repository.save(conductor);
@@ -43,7 +66,6 @@ public class ConductorService {
         conductorEncontrado.setCedula(conductorData.getCedula());
         conductorEncontrado.setTelefono(conductorData.getTelefono());
         conductorEncontrado.setDireccion(conductorData.getDireccion());
-        conductorEncontrado.setBuses(conductorData.getBuses());
 
         return repository.save(conductorEncontrado);
     }

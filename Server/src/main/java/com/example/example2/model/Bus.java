@@ -20,7 +20,7 @@ public class Bus {
     private String modelo;
     private String placa;
 
-    @OneToMany(mappedBy = "busId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "busId", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
     @JsonIgnore
     private List<ConductorXBus> conductores;
 

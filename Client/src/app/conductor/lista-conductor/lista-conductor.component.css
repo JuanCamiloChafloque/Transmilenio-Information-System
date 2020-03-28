@@ -1,4 +1,4 @@
-body {
+.container {
   text-align: center;
 }
 
@@ -53,6 +53,11 @@ a {
 
 .content-table tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
+}
+
+.btn-box{
+  width: 100%;
+  text-align: center;
 }
 
 button {

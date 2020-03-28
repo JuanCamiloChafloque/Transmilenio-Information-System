@@ -1,6 +1,8 @@
-body {
-  margin: 0;
-  padding: 0;
+.img-background {
+  padding: 0px;
+  margin: 0px;
+  width: 1260px;
+  height: 560px;
   font-family: sans-serif;
   background: url(https://www.kienyke.com/sites/default/files/styles/amp_1200x675_16_9/public/wp-content/uploads/2019/10/Bogota-noche.jpg?itok=LisfTPiD) no-repeat;
   background-size: cover;
