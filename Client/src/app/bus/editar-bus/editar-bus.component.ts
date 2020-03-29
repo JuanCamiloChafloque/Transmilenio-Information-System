@@ -3,6 +3,7 @@ import { Bus } from '../shared/Bus';
 import { BusService } from '../shared/bus.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-editar-bus',
@@ -12,6 +13,8 @@ import { switchMap } from 'rxjs/operators';
 export class EditarBusComponent implements OnInit {
 
   bus: Bus = null;
+  user = environment.user;
+  rol = environment.rol;
 
   constructor(
     private route: ActivatedRoute,

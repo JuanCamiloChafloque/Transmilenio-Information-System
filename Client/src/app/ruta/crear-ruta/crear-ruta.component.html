@@ -1,17 +1,28 @@
-<div class="title">
-  <h2>Crear Ruta</h2>
-</div>
+<div *ngIf="rol == 'ADMIN' && user != undefined">
+  <div class="title">
+    <h2>Crear Ruta</h2>
+  </div>
 
-<div class="form">
-  <p>Nombre</p>
-  <input type="text" class="field" [(ngModel)]="ruta.name">
-</div>
+  <div class="form">
+    <p>Nombre</p>
+    <input type="text" class="field" [(ngModel)]="name">
+    <div>
+      <select *ngIf="llegoEstacion == true" [(ngModel)] = "idRuta">
+          <option *ngFor="let estacion of estaciones" [value]="estacion.id">{{estacion.id}}</option>
+      </select><br>
+    </div>
+    <button class="btn-agregar" (click)="addEstacion()">Agregar Estación</button>
+    <div class="msg-agregar">
+      {{messageAgregar}}
+    </div>
+  </div>
 
-<div class="btn-box">
-  <button (click)=create() [disabled]="!canSubmit">Confirmar</button>
-  <button (click)=cancel()>Cancelar</button><br>
-</div>
+  <div class="btn-box">
+    <button (click)=create() [disabled]="!canSubmit">Confirmar</button>
+    <button (click)=cancel()>Cancelar</button><br>
+  </div>
 
-<div class="msg-box">
-  {{message}}
+  <div class="msg-box">
+    {{message}}
+  </div>
 </div>

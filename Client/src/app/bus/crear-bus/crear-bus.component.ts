@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Bus } from '../shared/Bus';
 import { BusService } from '../shared/bus.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-crear-bus',
@@ -15,6 +16,8 @@ export class CrearBusComponent implements OnInit {
 
   submitted = false;
   message = '';
+  user = environment.user;
+  rol = environment.rol;
   bus: Bus = new Bus(
     undefined,
     undefined,

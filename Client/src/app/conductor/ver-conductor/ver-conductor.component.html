@@ -1,4 +1,4 @@
-<div *ngIf="conductor != null">
+<div *ngIf="conductor != null && rol == 'COORDINADOR' && user != undefined">
   <div class="title">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1024px-User_with_smile.svg.png" alt="User Logo...">
     <h2>{{conductor.name}}</h2>

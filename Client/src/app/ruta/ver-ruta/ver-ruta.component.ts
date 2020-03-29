@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RutaService } from '../shared/ruta.service';
 import { switchMap } from 'rxjs/operators';
 import { Estacion } from '../shared/estacion';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ver-ruta',
@@ -14,6 +15,8 @@ export class VerRutaComponent implements OnInit {
 
   ruta: Ruta = null;
   estaciones: Estacion[] = [];
+  user = environment.user;
+  rol = environment.rol;
 
   constructor(
     private route: ActivatedRoute,

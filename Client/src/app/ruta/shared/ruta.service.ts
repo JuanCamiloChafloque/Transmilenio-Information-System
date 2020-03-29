@@ -64,6 +64,16 @@ export class RutaService {
     return this.get<Ruta[]>(url);
   }
 
+  getAllEstaciones() {
+    const url = `http://localhost:8080/listaEstaciones`;
+    return this.get<Estacion[]>(url);
+  }
+
+  getEstacionById(id: number) {
+    const url = `http://localhost:8080/informacionEstacion/${id}`;
+    return this.get<Estacion>(url);
+  }
+
   getEstaciones(id: number) {
     const url = `http://localhost:8080/informacionRuta/${id}/estaciones`;
     return this.get<Estacion[]>(url);
@@ -82,14 +92,15 @@ export class RutaService {
   update(ruta: Ruta) {
     const url = `http://localhost:8080/editarRuta/${ruta.id}`;
     return this.put(url, {
-      name: ruta.name
+      name: ruta.name,
     });
   }
 
   create(ruta: Ruta) {
     const url = `http://localhost:8080/crearRuta`;
     return this.post(url, {
-      name: ruta.name
+      name: ruta.name,
+      estaciones: ruta.estaciones
     });
   }
 }

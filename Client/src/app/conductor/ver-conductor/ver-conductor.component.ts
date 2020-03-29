@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConductorService } from '../shared/conductor.service';
 import { switchMap } from 'rxjs/operators';
 import { Conductor } from '../shared/conductor';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-ver-conductor',
@@ -12,6 +13,8 @@ import { Conductor } from '../shared/conductor';
 export class VerConductorComponent implements OnInit {
 
   conductor: Conductor = null;
+  user = environment.user;
+  rol = environment.rol;
 
   constructor(
     private route: ActivatedRoute,

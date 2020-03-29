@@ -1,4 +1,4 @@
-<div *ngIf="bus != null">
+<div *ngIf="bus != null && rol == 'COORDINADOR' && user != undefined">
   <div class="title">
     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Aiga_bus_on_green_circle.svg" alt="Bus Logo...">
     <h2>Bus: {{bus.id}}</h2>

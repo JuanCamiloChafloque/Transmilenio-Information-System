@@ -3,6 +3,7 @@ import { Conductor } from '../shared/conductor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConductorService } from '../shared/conductor.service';
 import { switchMap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-editar-conductor',
@@ -12,6 +13,8 @@ import { switchMap } from 'rxjs/operators';
 export class EditarConductorComponent implements OnInit {
 
   conductor: Conductor = null;
+  user = environment.user;
+  rol = environment.rol;
 
   constructor(
     private route: ActivatedRoute,

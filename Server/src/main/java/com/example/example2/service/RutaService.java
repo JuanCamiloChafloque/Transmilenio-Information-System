@@ -1,6 +1,7 @@
 package com.example.example2.service;
 
 import com.example.example2.model.Estacion;
+import com.example.example2.model.EstacionRepository;
 import com.example.example2.model.Ruta;
 import com.example.example2.model.RutaRepository;
 
@@ -22,6 +23,7 @@ public class RutaService {
 
     @Autowired
     private RutaRepository repository;
+    private EstacionRepository estacionRepository;
 
     @GetMapping("/paginaPrincipalRutas")
     public Iterable<Ruta> getRutas() {
@@ -38,16 +40,30 @@ public class RutaService {
         return repository.findById(rutaId).get().getEstaciones();
     }
 
+    @PutMapping("/informacionRuta/{id}/{idE}")
+    public Ruta agregarEstacionRuta(@PathVariable("id") Long rutaId, @PathVariable("idE") Long estId){
+        System.out.println("Estación ID: " + estId);
+        Estacion est = estacionRepository.findById(+estId).orElseThrow(() -> new NotFoundException("Estacion no encontrada"));
+        System.out.println("Nombre Estacion: " + est.getNombre());
+        Ruta ruta = buscarRuta(rutaId);
+        System.out.println("Nombre Ruta: " + ruta.getName());
+        ruta.addEstacion(est);
+        return repository.save(ruta);
+    }
+
     @PostMapping("/crearRuta")
     public Ruta crearRuta(@RequestBody Ruta ruta) {
-        return repository.save(ruta);
+        Ruta newRuta = new Ruta();
+        newRuta.setName(ruta.getName());
+        newRuta.getEstaciones().addAll(ruta.getEstaciones());
+        return repository.save(newRuta);
     }
 
     @PutMapping("/editarRuta/{id}")
     public Ruta editarRuta(@PathVariable("id") Long rutaId, @RequestBody Ruta rutaData) {
         Ruta rutaEncontrada = buscarRuta(rutaId);
-        rutaEncontrada.setId(rutaData.getId());
-        rutaEncontrada.setEstaciones(rutaData.getEstaciones());
+        rutaEncontrada.setName(rutaData.getName());
+        rutaEncontrada.getEstaciones().addAll(rutaData.getEstaciones());
 
         return repository.save(rutaEncontrada);
     }

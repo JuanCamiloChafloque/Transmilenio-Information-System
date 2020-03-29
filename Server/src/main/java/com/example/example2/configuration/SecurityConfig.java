@@ -55,16 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authenticationEntryPoint(entryPoint)
             .and()
             .authorizeRequests()
-                /*.antMatchers("/paginaPrincipalConductores/**",
-                             "/informacionConductor/**",
-                             "/crearConductor/**",
-                             "/editarConductor/**").hasRole("COORDINADOR")
-                .antMatchers("/paginaPrincipalBuses/**",
-                             "/informacionBus/**",
-                             "/crearBus/**",
-                             "/editarBus/**").hasRole("COORDINADOR")*/
                 .antMatchers("/h2/**").permitAll()
-                //.anyRequest().authenticated()
             .and()
             .formLogin()
                 .successHandler(successHandler)

@@ -1,5 +1,6 @@
 package com.example.example2.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,21 +16,21 @@ public class Bus {
 
     @Id
     @GeneratedValue
-    private Long idBus;
+    private Long id_bus;
 
     private String modelo;
     private String placa;
 
-    @OneToMany(mappedBy = "busId", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
+    @OneToMany(mappedBy = "id_bus", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
     @JsonIgnore
-    private List<ConductorXBus> conductores;
+    private List<ConductorXBus> conductores = new ArrayList<ConductorXBus>();
 
     public Long getId() {
-        return idBus;
+        return id_bus;
     }
 
     public void setId(Long id) {
-        this.idBus = id;
+        this.id_bus = id;
     }
 
     public String getModelo() {

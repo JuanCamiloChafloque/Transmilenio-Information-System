@@ -18,11 +18,11 @@ public class ConductorXBus {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("id_conductor")
-    private Conductor conductorId;
+    private Conductor id_conductor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("id_bus")
-    private Bus busId;
+    private Bus id_bus;
 
     public String getDiaAsignacion() {
         return diaAsignacion;
@@ -33,19 +33,19 @@ public class ConductorXBus {
     }
 
     public Conductor getConductorId() {
-        return conductorId;
+        return id_conductor;
     }
 
     public void setConductorId(Conductor conductorId) {
-        this.conductorId = conductorId;
+        this.id_conductor = conductorId;
     }
 
     public Bus getBusId() {
-        return busId;
+        return id_bus;
     }
 
     public void setBusId(Bus busId) {
-        this.busId = busId;
+        this.id_bus = busId;
     }
     
 }

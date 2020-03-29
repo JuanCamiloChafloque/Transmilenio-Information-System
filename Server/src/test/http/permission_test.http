@@ -18,7 +18,11 @@ GET http://localhost:8080/informacionRuta/-1/estaciones
 GET http://localhost:8080/api/employees
 
 ###
-GET http://localhost:8080/admin/test
+GET http://localhost:8080/informacionEstacion/-4
+
+###
+PUT http://localhost:8080/informacionRuta/-1/-4 HTTP/1.1
+Accept: */*
 
 ###
 POST http://localhost:8080/logout HTTP/1.1

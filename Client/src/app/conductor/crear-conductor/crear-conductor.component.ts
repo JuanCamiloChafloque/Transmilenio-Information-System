@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Conductor } from '../shared/conductor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConductorService } from '../shared/conductor.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-crear-conductor',
@@ -15,6 +16,8 @@ export class CrearConductorComponent implements OnInit {
 
   submitted = false;
   message = '';
+  user = environment.user;
+  rol = environment.rol;
   conductor: Conductor = new Conductor(
     undefined,
     undefined,

@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf= "rol == 'ADMIN' || rol == 'PASAJERO' && user != undefined" class="container">
 
   <div class="title">
     <h2>Rutas</h2>

@@ -1,5 +1,6 @@
 package com.example.example2.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,20 +17,20 @@ public class Estacion {
 
     @Id
     @GeneratedValue
-    private Long idEstacion;
+    private Long id_estacion;
 
     private String nombre;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Ruta> rutas;
+    private Set<Ruta> rutas = new HashSet<Ruta>();
 
     public Long getId() {
-        return idEstacion;
+        return id_estacion;
     }
 
     public void setId(Long id) {
-        this.idEstacion = id;
+        this.id_estacion = id;
     }
 
     public String getNombre() {

@@ -29,6 +29,12 @@
   width: 280px;
 }
 
+select {
+  margin-top: 15px;
+  width: 300px;
+  height: 30px;
+}
+
 .field:focus {
   border-color: black;
 }
@@ -50,6 +56,14 @@ button {
   margin-left: 25px;
   margin-right: 25px;
   border-radius: 5px 5px 5px 5px;
+}
+
+.btn-agregar {
+  margin-left: 90px;
+}
+
+.msg-agregar {
+  margin-left: 50px;
 }
 
 .msg-box {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Conductor } from '../shared/conductor';
 import { ConductorService } from '../shared/conductor.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-lista-conductor',
@@ -10,6 +11,8 @@ import { ConductorService } from '../shared/conductor.service';
 export class ListaConductorComponent implements OnInit {
 
   conductores: Conductor[] = [];
+  rol = environment.rol;
+  user = environment.user;
   errorMessage = '';
 
   constructor(private conductorService: ConductorService) { }

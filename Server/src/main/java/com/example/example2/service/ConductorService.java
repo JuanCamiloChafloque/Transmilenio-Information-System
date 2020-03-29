@@ -39,19 +39,8 @@ public class ConductorService {
     }
 
     @GetMapping("/informacionConductor/{id}/buses")
-    public Iterable<Bus> getBuses(@PathVariable("id") Long conductorId) {
-        
-        List<Bus> buses = new ArrayList<Bus>();
-        Iterator<ConductorXBus> lista = repository.findById(conductorId).get().getBuses().iterator();
-        while(lista.next() != null){
-            ConductorXBus actual = lista.next();
-            if(actual.getConductorId().getId() == conductorId){
-                buses.add(actual.getBusId());
-            }
-        }
-
-        return buses;
-    
+    public Iterable<ConductorXBus> getBuses(@PathVariable("id") Long conductorId) {
+        return repository.findById(conductorId).get().getBuses();
     }
 
     @PostMapping("/crearConductor")

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainPageLoginService } from './main-page-login.service';
+import { Usuario } from './usuario';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-main-page-login',
@@ -10,6 +12,9 @@ import { MainPageLoginService } from './main-page-login.service';
 export class MainPageLoginComponent implements OnInit {
 
   message = '';
+  usuarioLogin = environment.user;
+  usuarios: Usuario[] = [];
+  messageAuth = '';
 
   constructor(
     private router: Router,
@@ -17,37 +22,54 @@ export class MainPageLoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.logSesion.getUsuarios().subscribe(
+      results => {
+        this.usuarios = results;
+        console.log(results);
+        for (const user of this.usuarios) {
+          if (user.name === environment.user) {
+            environment.rol = user.rol;
+          }
+        }
+      }
+    );
   }
 
   menuConductores( ) {
-    this.router.navigate(['/paginaPrincipalConductores']);
-    /*this.logSesion.getMenuPrincipalConductores().subscribe(data => {
-      console.log('Se entró al menu principal de los conductores!');
-    }, error => {
-      this.message = 'Error entrando al menu principal de los conductores. \n No posee los credenciales!';
-    });*/
+    if (environment.user !== undefined && environment.rol === 'COORDINADOR') {
+      this.router.navigate(['/paginaPrincipalConductores']);
+    } else {
+      this.message = 'Error 403. No posee los permisos para entrar al menú de conductores';
+    }
+
   }
 
   menuBuses( ) {
-    this.router.navigate(['/paginaPrincipalBuses']);
-    /*this.logSesion.getMenuPrincipalBuses().subscribe(data => {
-      console.log('Se entró al menu principal de los buses!');
-    }, error => {
-      this.message = 'Error entrando al menu principal de los buses. \n No posee los credenciales!';
-    });*/
+    if (environment.user !== undefined && environment.rol === 'COORDINADOR') {
+      this.router.navigate(['/paginaPrincipalBuses']);
+    } else {
+      this.message = 'Error 403 No posee los permisos para entrar al menú de buses';
+    }
   }
 
   menuRutas( ) {
-    this.router.navigate(['/paginaPrincipalRutas']);
+    if (environment.user !== undefined && (environment.rol === 'ADMIN' || environment.rol === 'PASAJERO')) {
+      this.router.navigate(['/paginaPrincipalRutas']);
+    } else {
+      this.message = 'Error 403 No posee los permisos para entrar al menú de rutas';
+    }
   }
 
   logout( ) {
-      this.logSesion.logout().subscribe(data => {
-        console.log('Logout exitoso!');
-        this.router.navigate(['/login']);
-      }, error => {
-        console.log('Error in logout!');
-      });
+    environment.rol = undefined;
+    environment.user = undefined;
+    this.logSesion.logout().subscribe(data => {
+      console.log('Logout exitoso!');
+      this.router.navigate(['/login']);
+    }, error => {
+      console.log('Error in logout!');
+    });
   }
 
 }
