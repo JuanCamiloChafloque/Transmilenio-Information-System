@@ -4,8 +4,9 @@ import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Bus } from './Bus';
 import { environment } from '../../../environments/environment';
-import { Conductorxbus } from 'src/app/conductor/shared/conductorxbus';
 import { Busxruta } from './busxruta';
+import { Conductor } from 'src/app/conductor/shared/conductor';
+import { Ruta } from 'src/app/ruta/shared/ruta';
 
 @Injectable({
   providedIn: 'root'
@@ -60,14 +61,19 @@ export class BusService {
     );
   }
 
-  getRutasBus(id: number) {
-    const url = `http://localhost:8080/informacionBus/${id}/rutas`;
-    return this.get<Busxruta[]>(url);
-  }
-
   getConductoresBus(id: number) {
     const url = `http://localhost:8080/informacionBus/${id}/conductores`;
-    return this.get<Conductorxbus[]>(url);
+    return this.get<Conductor[]>(url);
+  }
+
+  getRutasBus(id: number) {
+    const url = `http://localhost:8080/informacionBus/${id}/rutas`;
+    return this.get<Ruta[]>(url);
+  }
+
+  getRutasXBus(id: number) {
+    const url = `http://localhost:8080/informacionBus/${id}/rutasxbus`;
+    return this.get<Busxruta[]>(url);
   }
 
   findAll() {

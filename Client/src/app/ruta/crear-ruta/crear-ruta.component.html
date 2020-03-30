@@ -5,7 +5,7 @@
 
   <div class="form">
     <p>Nombre</p>
-    <input type="text" class="field" [(ngModel)]="name">
+    <input type="text" class="field" [(ngModel)]="ruta.name">
     <div>
       <select *ngIf="llegoEstacion == true" [(ngModel)] = "idRuta">
           <option *ngFor="let estacion of estaciones" [value]="estacion.id">{{estacion.id}}</option>

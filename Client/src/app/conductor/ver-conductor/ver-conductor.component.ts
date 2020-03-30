@@ -4,7 +4,7 @@ import { ConductorService } from '../shared/conductor.service';
 import { switchMap } from 'rxjs/operators';
 import { Conductor } from '../shared/conductor';
 import { environment } from '../../../environments/environment';
-import { Conductorxbus } from '../shared/conductorxbus';
+import { Bus } from 'src/app/bus/shared/Bus';
 
 @Component({
   selector: 'app-ver-conductor',
@@ -14,11 +14,10 @@ import { Conductorxbus } from '../shared/conductorxbus';
 export class VerConductorComponent implements OnInit {
 
   conductor: Conductor = null;
-  mostrar = false;
+  llegaronBuses = false;
   user = environment.user;
   rol = environment.rol;
-
-  buses: Conductorxbus [] = [];
+  buses: Bus [];
 
   constructor(
     private route: ActivatedRoute,
@@ -41,15 +40,10 @@ export class VerConductorComponent implements OnInit {
       switchMap(params => this.conductorService.getBusesConductor(+params.get('id')))
     )
     .subscribe(result => {
-      console.log(result);
       this.buses = result;
+      this.llegaronBuses = true;
+      console.log(this.buses);
     });
-
-
-  }
-
-  mostrarBuses( ) {
-    this.mostrar = true;
   }
 
   eliminarConductor(id: number) {

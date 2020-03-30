@@ -1,38 +1,46 @@
-<div *ngIf="bus != null && rol == 'COORDINADOR' && user != undefined">
-  <div class="title">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Aiga_bus_on_green_circle.svg" alt="Bus Logo...">
-    <h2>Bus: {{bus.id}}</h2>
-  </div>
+<div *ngIf="llegaronRutas == true">
 
-  <div class="info-box">
-    <div class="info">
-      <label class="tag">Id</label><br>
-      <label>{{bus.id}}</label><br>
+  <div *ngIf="bus != null && rol == 'COORDINADOR' && user != undefined">
+    <div class="title">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Aiga_bus_on_green_circle.svg" alt="Bus Logo...">
+      <h2>Bus: {{bus.id}}</h2>
     </div>
-    <div class="info">
-      <label class="tag">Modelo</label><br>
-      <label class="tag-info">{{bus.modelo}}</label><br>
-    </div>
-    <div class="info">
-      <label class="tag">Placa</label><br>
-      <label class="tag-info">{{bus.placa}}</label><br>
-    </div>
-    <div class="info">
-      <label class="tag">Rutas Asignadas</label><br>
-      <ul>
-        <li *ngFor="let ruta of rutas">{{ruta.idRuta.name}}: {{ruta.diaAsignacion}} / {{ruta.horaInicio}} - {{ruta.horaFin}}</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="btn-box">
-    <button [routerLink]="['/editarBus/', bus.id]">Editar</button>
-    <button (click)=eliminarBus(bus.id)>Eliminar</button>
-    <button (click)=volverLista()>Volver</button>
-  </div>
+    <div class="info-box">
+      <div class="info">
+        <label class="tag">Id</label><br>
+        <label>{{bus.id}}</label><br>
+      </div>
+      <div class="info">
+        <label class="tag">Modelo</label><br>
+        <label class="tag-info">{{bus.modelo}}</label><br>
+      </div>
+      <div class="info">
+        <label class="tag">Placa</label><br>
+        <label class="tag-info">{{bus.placa}}</label><br>
+      </div>
+      <div *ngIf="mostrar == true" class="info">
+        <label class="tag">Conductores Asignados</label><br>
+        <label class="tag-info">{{countConductores}}</label><br>
+      </div>
+      <div *ngIf="mostrar == true" class="info">
+        <label class="tag">Rutas Asignadas</label><br>
+        <ul>
+          <li *ngFor="let ruta of rutas">{{ruta.name}}: {{ruta.diaAsignacion}} / {{ruta.horaInicio}} - {{ruta.horaFin}}</li>
+        </ul>
+      </div>
+    </div>
 
-  <div class="msg-box">
-    {{errorMessage}}
+    <div class="btn-box">
+      <button [routerLink]="['/editarBus/', bus.id]">Editar</button>
+      <button (click)=eliminarBus(bus.id)>Eliminar</button>
+      <button (click)=volverLista()>Volver</button>
+    </div>
+
+    <div class="msg-box">
+      {{errorMessage}}
+    </div>
+
   </div>
 
 </div>

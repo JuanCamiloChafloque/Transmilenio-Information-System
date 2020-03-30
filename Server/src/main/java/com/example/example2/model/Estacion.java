@@ -20,7 +20,7 @@ public class Estacion {
 
     private String nombre;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JsonIgnore
     private Set<Ruta> rutas = new HashSet<Ruta>();
 

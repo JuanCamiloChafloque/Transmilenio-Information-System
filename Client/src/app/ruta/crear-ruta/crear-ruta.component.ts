@@ -22,7 +22,7 @@ export class CrearRutaComponent implements OnInit {
   message = '';
   messageAgregar = '';
   idRuta = '';
-  name = '';
+  ruta: Ruta = null;
   llegoEstacion = false;
   estacionEncontrada: Estacion = null;
   estacionesAgregar: Estacion[] = [];
@@ -46,12 +46,9 @@ export class CrearRutaComponent implements OnInit {
 
   create( ) {
     this.submitted = true;
-    const ruta: Ruta = {
-      name: this.name,
-      estaciones: this.estacionesAgregar
-    };
-    console.log(ruta);
-    this.rutaService.create(ruta).subscribe(
+    this.ruta.estaciones = this.estacionesAgregar;
+    console.log(this.ruta);
+    this.rutaService.create(this.ruta).subscribe(
       result => {
         console.log(result);
         this.router.navigate(['/paginaPrincipalRutas']);

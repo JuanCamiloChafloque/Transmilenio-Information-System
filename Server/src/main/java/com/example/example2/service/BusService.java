@@ -3,7 +3,13 @@ package com.example.example2.service;
 import com.example.example2.model.Bus;
 import com.example.example2.model.BusRepository;
 import com.example.example2.model.BusXRuta;
+import com.example.example2.model.Conductor;
 import com.example.example2.model.ConductorXBus;
+import com.example.example2.model.Ruta;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.example2.exceptions.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +39,31 @@ public class BusService {
     }
 
     @GetMapping("/informacionBus/{id}/conductores")
-    public Iterable<ConductorXBus> getBuses(@PathVariable("id") Long busId) {
-        return repository.findById(busId).get().getConductores();
+    public Iterable<Conductor> getBuses(@PathVariable("id") Long busId) {
+        List<Conductor> conductores = new ArrayList<Conductor>();
+        Iterable<ConductorXBus> condBus = repository.findById(busId).get().getConductores();
+        for(ConductorXBus actual: condBus){
+            if(actual.getBusId().getId() == busId){
+                conductores.add(actual.getConductorId());
+            }
+        }
+        return conductores;
     }
 
     @GetMapping("/informacionBus/{id}/rutas")
-    public Iterable<BusXRuta> getRutas(@PathVariable("id") Long busId) {
+    public Iterable<Ruta> getRutas(@PathVariable("id") Long busId) {
+        List<Ruta> rutas = new ArrayList<Ruta>();
+        Iterable<BusXRuta> busesRuta = repository.findById(busId).get().getRutas();
+        for(BusXRuta actual: busesRuta){
+            if(actual.getBusId().getId() == busId){
+                rutas.add(actual.getRutaId());
+            }
+        }
+        return rutas;
+    }
+
+    @GetMapping("/informacionBus/{id}/rutasxbus")
+    public Iterable<BusXRuta> getRutasxbus(@PathVariable("id") Long busId) {
         return repository.findById(busId).get().getRutas();
     }
 

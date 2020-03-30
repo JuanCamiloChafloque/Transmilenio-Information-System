@@ -4,8 +4,9 @@ import { BusService } from '../shared/bus.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { Conductorxbus } from 'src/app/conductor/shared/conductorxbus';
 import { Busxruta } from '../shared/busxruta';
+import { Conductor } from 'src/app/conductor/shared/conductor';
+import { Ruta } from 'src/app/ruta/shared/ruta';
 
 @Component({
   selector: 'app-ver-bus',
@@ -16,10 +17,14 @@ export class VerBusComponent implements OnInit {
 
   bus: Bus = null;
   errorMessage = '';
+  llegaronRutas = false;
+  mostrar = false;
   user = environment.user;
   rol = environment.rol;
-  conductores: Conductorxbus[] = [];
-  rutas: Busxruta[] = [];
+  countConductores = 0;
+  conductores: Conductor[];
+  rutas: Ruta[];
+  rutasxbus: Busxruta[];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +49,7 @@ export class VerBusComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.conductores = result;
+      this.countConductores = this.conductores.length;
     });
 
     this.route.paramMap
@@ -54,6 +60,30 @@ export class VerBusComponent implements OnInit {
       console.log(result);
       this.rutas = result;
     });
+
+    this.route.paramMap
+    .pipe(
+      switchMap(params => this.busService.getRutasXBus(+params.get('id')))
+    )
+    .subscribe(result => {
+      console.log(result);
+      this.rutasxbus = result;
+      this.llegaronRutas = true;
+      this.inicializar();
+    });
+  }
+
+  inicializar() {
+
+    for (let i = 0; i < this.rutas.length; i++) {
+      this.rutas[i].diaAsignacion = this.rutasxbus[i].diaAsignacion;
+      this.rutas[i].horaInicio = this.rutasxbus[i].horaInicio;
+      this.rutas[i].horaFin = this.rutasxbus[i].horaFin;
+    }
+
+    console.log('Rutas: ' + this.rutas);
+    this.mostrar = true;
+
   }
 
   eliminarBus(id: number) {

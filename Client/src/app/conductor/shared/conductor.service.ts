@@ -4,7 +4,7 @@ import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Conductor } from './conductor';
 import { environment } from '../../../environments/environment';
-import { Conductorxbus } from './conductorxbus';
+import { Bus } from 'src/app/bus/shared/Bus';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +61,7 @@ export class ConductorService {
 
   getBusesConductor(id: number) {
     const url = `http://localhost:8080/informacionConductor/${id}/buses`;
-    return this.get<Conductorxbus[]>(url);
+    return this.get<Bus[]>(url);
   }
 
   findAll() {

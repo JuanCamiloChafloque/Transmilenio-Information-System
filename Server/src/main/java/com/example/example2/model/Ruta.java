@@ -23,7 +23,7 @@ public class Ruta {
 
     private String name;
 
-    @ManyToMany(mappedBy = "rutas", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "rutas", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JsonIgnore
     private Set<Estacion> estaciones = new HashSet<Estacion>();
 

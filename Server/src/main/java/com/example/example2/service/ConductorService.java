@@ -1,9 +1,12 @@
 package com.example.example2.service;
 
+import com.example.example2.model.Bus;
 import com.example.example2.model.Conductor;
 import com.example.example2.model.ConductorRepository;
 import com.example.example2.model.ConductorXBus;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.example2.exceptions.NotFoundException;
 
@@ -35,7 +38,19 @@ public class ConductorService {
     }
 
     @GetMapping("/informacionConductor/{id}/buses")
-    public Iterable<ConductorXBus> getBuses(@PathVariable("id") Long conductorId) {
+    public Iterable<Bus> getBuses(@PathVariable("id") Long conductorId) {
+        List<Bus> buses = new ArrayList<Bus>();
+        Iterable<ConductorXBus> condBuses = repository.findById(conductorId).get().getBuses();
+        for(ConductorXBus actual: condBuses){
+            if(actual.getConductorId().getId() == conductorId){
+                buses.add(actual.getBusId());
+            }
+        }
+        return buses;
+    }
+
+    @GetMapping("/informacionConductor/{id}/busesxconductor")
+    public Iterable<ConductorXBus> getBusesXConductor(@PathVariable("id") Long conductorId) {
         return repository.findById(conductorId).get().getBuses();
     }
 
@@ -51,6 +66,7 @@ public class ConductorService {
         conductorEncontrado.setCedula(conductorData.getCedula());
         conductorEncontrado.setTelefono(conductorData.getTelefono());
         conductorEncontrado.setDireccion(conductorData.getDireccion());
+        //conductorEncontrado.getBuses().addAll(conductorData.getBuses());
 
         return repository.save(conductorEncontrado);
     }

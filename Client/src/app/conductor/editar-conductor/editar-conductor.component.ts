@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConductorService } from '../shared/conductor.service';
 import { switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { Bus } from 'src/app/bus/shared/Bus';
 
 @Component({
   selector: 'app-editar-conductor',
@@ -19,7 +20,7 @@ export class EditarConductorComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private conductorService: ConductorService
+    private conductorService: ConductorService,
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class EditarConductorComponent implements OnInit {
   }
 
   edit() {
+
     this.conductorService.update(this.conductor).subscribe(
       result => {
         console.log(result);
