@@ -36,7 +36,7 @@ export class EditarBusComponent implements OnInit {
     this.busService.update(this.bus).subscribe(
       result => {
         console.log(result);
-        this.router.navigate([`/paginaPrincipalBuses`]);
+        this.router.navigate([`/informacionBus/${this.bus.id}`]);
       },
       error => {
         console.error(error);

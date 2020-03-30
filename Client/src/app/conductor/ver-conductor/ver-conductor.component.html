@@ -27,17 +27,17 @@
         <label class="tag">Dirección</label><br>
         <label class="tag-info">{{conductor.direccion}}</label><br>
       </div>
-      <div class="info">
+      <div *ngIf="mostrar == true" class="info">
         <label class="tag">Buses Asignados</label><br>
         <ul>
-          <li *ngFor="let asig of buses">Bus #{{asig.id}}: {{asig.modelo}} - {{asig.placa}}</li>
+          <li *ngFor="let asig of buses">Bus #{{asig.id}}: {{asig.diaAsignacion}}</li>
         </ul>
       </div>
     </div>
 
     <div class="btn-box">
       <button [routerLink]="['/editarConductor/', conductor.id]">Editar</button>
-      <button [routerLink]="['/paginaPrincipalConductores']" (click)=eliminarConductor(conductor.id)>Eliminar</button>
+      <button [routerLink]="['/paginaPrincipalLogin']" (click)=eliminarConductor(conductor.id)>Eliminar</button>
       <button (click)=volverLista()>Volver</button>
     </div>
 

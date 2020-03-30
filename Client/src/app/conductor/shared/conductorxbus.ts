@@ -1,5 +1,5 @@
-import { Conductor } from './conductor';
 import { Bus } from 'src/app/bus/shared/Bus';
+import { Conductor } from './conductor';
 
 export class Conductorxbus {
   constructor(

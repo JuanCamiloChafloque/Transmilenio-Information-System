@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Conductor } from './conductor';
 import { environment } from '../../../environments/environment';
 import { Bus } from 'src/app/bus/shared/Bus';
+import { Conductorxbus } from './conductorxbus';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,11 @@ export class ConductorService {
   getBusesConductor(id: number) {
     const url = `http://localhost:8080/informacionConductor/${id}/buses`;
     return this.get<Bus[]>(url);
+  }
+
+  getBusesxconductor(id: number) {
+    const url = `http://localhost:8080/informacionConductor/${id}/busesxconductor`;
+    return this.get<Conductorxbus[]>(url);
   }
 
   findAll() {

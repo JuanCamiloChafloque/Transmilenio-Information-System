@@ -91,7 +91,7 @@ export class VerBusComponent implements OnInit {
       this.busService.remove(id).subscribe(
         resultado => console.log('Bus eliminado!')
       );
-      this.router.navigate(['/paginaPrincipalBuses']);
+      this.router.navigate(['/paginaPrincipalLogin']);
     } else {
       this.errorMessage = 'No se puede eliminar al bus. El bus tiene conductores asignados';
     }
