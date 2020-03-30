@@ -21,8 +21,12 @@
 
   <div class="btn-box">
     <button [routerLink]="['/editarBus/', bus.id]">Editar</button>
-    <button [routerLink]="['/paginaPrincipalBuses']" (click)=eliminarBus(bus.id)>Eliminar</button>
+    <button (click)=eliminarBus(bus.id)>Eliminar</button>
     <button (click)=volverLista()>Volver</button>
+  </div>
+
+  <div class="msg-box">
+    {{errorMessage}}
   </div>
 
 </div>

@@ -25,6 +25,12 @@
       <label class="tag">Dirección</label><br>
       <label class="tag-info">{{conductor.direccion}}</label><br>
     </div>
+    <div class="info">
+      <label class="tag">Buses Asignados</label><br>
+      <ul>
+        <li *ngFor="let asig of buses">{{asig.idBus.id}}: {{asig.diaAsignacion}}</li>
+      </ul>
+    </div>
   </div>
 
   <div class="btn-box">

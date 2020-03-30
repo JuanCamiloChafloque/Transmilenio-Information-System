@@ -25,6 +25,10 @@ public class Bus {
     @JsonIgnore
     private List<ConductorXBus> conductores = new ArrayList<ConductorXBus>();
 
+    @OneToMany(mappedBy = "id_bus", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
+    @JsonIgnore
+    private List<BusXRuta> rutas = new ArrayList<BusXRuta>();
+
     public Long getId() {
         return id_bus;
     }
@@ -53,7 +57,17 @@ public class Bus {
         return conductores;
     }
 
-    public void setConductores(List<ConductorXBus> conductorxbusList) {
-        this.conductores = conductorxbusList;
+    public void setConductores(List<ConductorXBus> conductores) {
+        this.conductores = conductores;
     }
+
+    public List<BusXRuta> getRutas() {
+        return rutas;
+    }
+
+    public void setRutas(List<BusXRuta> rutas) {
+        this.rutas = rutas;
+    }
+
+    
 }

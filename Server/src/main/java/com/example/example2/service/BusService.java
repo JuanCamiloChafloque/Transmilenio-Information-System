@@ -2,6 +2,8 @@ package com.example.example2.service;
 
 import com.example.example2.model.Bus;
 import com.example.example2.model.BusRepository;
+import com.example.example2.model.BusXRuta;
+import com.example.example2.model.ConductorXBus;
 import com.example.example2.exceptions.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,16 @@ public class BusService {
     @GetMapping("/informacionBus/{id}")
     public Bus buscarBus(@PathVariable("id") Long busId) {
         return repository.findById(busId).orElseThrow(() -> new NotFoundException("Bus no encontrado"));
+    }
+
+    @GetMapping("/informacionBus/{id}/conductores")
+    public Iterable<ConductorXBus> getBuses(@PathVariable("id") Long busId) {
+        return repository.findById(busId).get().getConductores();
+    }
+
+    @GetMapping("/informacionBus/{id}/rutas")
+    public Iterable<BusXRuta> getRutas(@PathVariable("id") Long busId) {
+        return repository.findById(busId).get().getRutas();
     }
 
     @PostMapping("/crearBus")

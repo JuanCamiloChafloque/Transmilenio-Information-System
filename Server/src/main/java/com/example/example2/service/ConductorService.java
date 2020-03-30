@@ -1,13 +1,9 @@
 package com.example.example2.service;
 
-import com.example.example2.model.Bus;
 import com.example.example2.model.Conductor;
 import com.example.example2.model.ConductorRepository;
 import com.example.example2.model.ConductorXBus;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import com.example.example2.exceptions.NotFoundException;
 

@@ -16,11 +16,11 @@ public class ConductorXBus {
     @Column(name="dia_asignacion")
     private String diaAsignacion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("id_conductor")
     private Conductor id_conductor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("id_bus")
     private Bus id_bus;
 
@@ -39,7 +39,7 @@ public class ConductorXBus {
     public void setConductorId(Conductor conductorId) {
         this.id_conductor = conductorId;
     }
-
+    
     public Bus getBusId() {
         return id_bus;
     }

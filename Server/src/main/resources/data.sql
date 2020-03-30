@@ -77,3 +77,22 @@ insert into estacion_rutas (rutas_id_ruta, estaciones_id_estacion) values(-10, -
 insert into usuario (id_user, name, rol) values (-1, 'admin', 'ADMIN');
 insert into usuario (id_user, name, rol) values (-2, 'coordinador', 'COORDINADOR');
 insert into usuario (id_user, name, rol) values (-3, 'pasajero', 'PASAJERO');
+
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-1, -1, 'Lunes', '9:00', '18:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-1, -4, 'Viernes', '7:00', '19:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-2, -6, 'Miercoles', '4:00', '20:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-2, -3, 'Jueves', '11:00', '21:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-3, -7, 'Jueves', '11:00', '21:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-3, -8, 'Sabado', '8:00', '20:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-3, -10, 'Domingo', '8:00', '16:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-4, -2, 'Martes', '11:00', '17:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-5, -6, 'Lunes', '5:00', '17:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-5, -8, 'Domingo', '5:00', '19:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-6, -1, 'Miercoles', '6:00', '21:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-7, -9, 'Lunes', '4:00', '18:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-7, -7, 'Jueves', '4:00', '18:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-7, -6, 'Lunes', '8:00', '21:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-7, -2, 'Viernes', '9:00', '20:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-8, -1, 'Lunes', '8:00', '22:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-8, -2, 'Viernes', '10:00', '17:00');
+insert into busxruta (id_bus_id_bus, id_ruta_id_ruta, dia_asignacion, hora_inicio, hora_fin) values (-9, -4, 'Jueves', '5:00', '19:00');

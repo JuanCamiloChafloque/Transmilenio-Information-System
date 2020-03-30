@@ -8,7 +8,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ConductorBusId implements Serializable{
 
-    @Column(name="id_conductor")
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "id_conductor")
     private Long id_conductor;
 
     @Column(name="id_bus")

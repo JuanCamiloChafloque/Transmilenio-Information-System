@@ -13,9 +13,9 @@ Content-Type: application/x-www-form-urlencoded
 username=admin&password=password
 
 ###
-GET http://localhost:8080/informacionRuta/-1/estaciones
+GET http://localhost:8080/informacionRuta/-1/buses
 ###
-GET http://localhost:8080/api/employees
+GET http://localhost:8080/informacionRuta/-1
 
 ###
 GET http://localhost:8080/informacionEstacion/-4

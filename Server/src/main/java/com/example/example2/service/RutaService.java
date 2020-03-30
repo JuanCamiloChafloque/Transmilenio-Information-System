@@ -1,5 +1,6 @@
 package com.example.example2.service;
 
+import com.example.example2.model.BusXRuta;
 import com.example.example2.model.Estacion;
 import com.example.example2.model.EstacionRepository;
 import com.example.example2.model.Ruta;
@@ -33,6 +34,11 @@ public class RutaService {
     @GetMapping("/informacionRuta/{id}")
     public Ruta buscarRuta(@PathVariable("id") Long rutaId) {
         return repository.findById(rutaId).orElseThrow(() -> new NotFoundException("Ruta no encontrada"));
+    }
+
+    @GetMapping("/informacionRuta/{id}/buses")
+    public Iterable<BusXRuta> getRutas(@PathVariable("id") Long rutaId) {
+        return repository.findById(rutaId).get().getBuses();
     }
 
     @GetMapping("/informacionRuta/{id}/estaciones")
