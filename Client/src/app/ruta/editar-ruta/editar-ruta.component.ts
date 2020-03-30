@@ -14,7 +14,6 @@ import { environment } from '../../../environments/environment';
 export class EditarRutaComponent implements OnInit {
 
   ruta: Ruta = null;
-  est: Estacion[] = [];
   user = environment.user;
   rol = environment.rol;
 
@@ -32,19 +31,9 @@ export class EditarRutaComponent implements OnInit {
     .subscribe(result => {
       this.ruta = result;
     });
-
-    this.route.paramMap
-    .pipe(
-      switchMap(params => this.rutaService.getEstaciones(+params.get('id')))
-    )
-    .subscribe(result => {
-      console.log(result);
-      this.est = result;
-    });
   }
 
   edit() {
-    this.ruta.estaciones = this.est;
     this.rutaService.update(this.ruta).subscribe(
       result => {
         console.log(result);

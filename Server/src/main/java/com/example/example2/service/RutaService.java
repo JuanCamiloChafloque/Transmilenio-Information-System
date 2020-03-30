@@ -2,9 +2,12 @@ package com.example.example2.service;
 
 import com.example.example2.model.BusXRuta;
 import com.example.example2.model.Estacion;
-import com.example.example2.model.EstacionRepository;
 import com.example.example2.model.Ruta;
 import com.example.example2.model.RutaRepository;
+import com.example.example2.model.RutaXEstacion;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.example2.exceptions.NotFoundException;
 
@@ -24,7 +27,6 @@ public class RutaService {
 
     @Autowired
     private RutaRepository repository;
-    private EstacionRepository estacionRepository;
 
     @GetMapping("/paginaPrincipalRutas")
     public Iterable<Ruta> getRutas() {
@@ -43,33 +45,32 @@ public class RutaService {
 
     @GetMapping("/informacionRuta/{id}/estaciones")
     public Iterable<Estacion> getEstaciones(@PathVariable("id") Long rutaId){
-        return repository.findById(rutaId).get().getEstaciones();
+
+        List<Estacion> estaciones = new ArrayList<Estacion>();
+        Iterable<RutaXEstacion> rutaEst = repository.findById(rutaId).get().getEstaciones();
+        for(RutaXEstacion actual: rutaEst){
+            if(actual.getRutaId().getId() == rutaId){
+                estaciones.add(actual.getEstacionId());
+            }
+        }
+        return estaciones;
     }
 
-    @PutMapping("/informacionRuta/{id}/{idE}")
-    public Ruta agregarEstacionRuta(@PathVariable("id") Long rutaId, @PathVariable("idE") Long estId){
-        System.out.println("Estación ID: " + estId);
-        Estacion est = estacionRepository.findById(+estId).orElseThrow(() -> new NotFoundException("Estacion no encontrada"));
-        System.out.println("Nombre Estacion: " + est.getNombre());
-        Ruta ruta = buscarRuta(rutaId);
-        System.out.println("Nombre Ruta: " + ruta.getName());
-        ruta.addEstacion(est);
-        return repository.save(ruta);
+    @GetMapping ("/informacionRuta/{id}/estacionesxruta")
+    public Iterable<RutaXEstacion> getEstacionesRuta(@PathVariable("id") Long rutaId){
+        return repository.findById(rutaId).get().getEstaciones();
     }
 
     @PostMapping("/crearRuta")
     public Ruta crearRuta(@RequestBody Ruta ruta) {
-        Ruta newRuta = new Ruta();
-        newRuta.setName(ruta.getName());
-        newRuta.getEstaciones().addAll(ruta.getEstaciones());
-        return repository.save(newRuta);
+        return repository.save(ruta);
     }
 
     @PutMapping("/editarRuta/{id}")
     public Ruta editarRuta(@PathVariable("id") Long rutaId, @RequestBody Ruta rutaData) {
         Ruta rutaEncontrada = buscarRuta(rutaId);
         rutaEncontrada.setName(rutaData.getName());
-        rutaEncontrada.getEstaciones().addAll(rutaData.getEstaciones());
+        //rutaEncontrada.getEstaciones().addAll(rutaData.getEstaciones());
 
         return repository.save(rutaEncontrada);
     }

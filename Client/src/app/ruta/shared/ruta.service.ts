@@ -106,8 +106,7 @@ export class RutaService {
   create(ruta: Ruta) {
     const url = `http://localhost:8080/crearRuta`;
     return this.post(url, {
-      name: ruta.name,
-      estaciones: ruta.estaciones
+      name: ruta.name
     });
   }
 }

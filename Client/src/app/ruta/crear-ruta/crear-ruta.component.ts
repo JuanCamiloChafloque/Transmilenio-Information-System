@@ -20,13 +20,10 @@ export class CrearRutaComponent implements OnInit {
   rol = environment.rol;
   submitted = false;
   message = '';
-  messageAgregar = '';
-  idRuta = '';
-  ruta: Ruta = null;
-  llegoEstacion = false;
-  estacionEncontrada: Estacion = null;
-  estacionesAgregar: Estacion[] = [];
-  estaciones: Estacion[] = [];
+  ruta: Ruta = new Ruta(
+    undefined,
+    undefined,
+  );
 
   constructor(
     private route: ActivatedRoute,
@@ -35,18 +32,10 @@ export class CrearRutaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.rutaService.getAllEstaciones().subscribe(
-      results => {
-        this.estaciones = results;
-        this.llegoEstacion = true;
-        console.log(results);
-      }
-    );
   }
 
   create( ) {
     this.submitted = true;
-    this.ruta.estaciones = this.estacionesAgregar;
     console.log(this.ruta);
     this.rutaService.create(this.ruta).subscribe(
       result => {
@@ -62,20 +51,6 @@ export class CrearRutaComponent implements OnInit {
 
   cancel( ) {
     this.router.navigate(['/paginaPrincipalRutas']);
-  }
-
-  addEstacion() {
-    this.rutaService.getEstacionById(+this.idRuta).subscribe(
-      results => {
-        this.estacionEncontrada = results;
-        console.log(results);
-      }
-    );
-    if (this.estacionEncontrada != null) {
-      this.estacionesAgregar.push(this.estacionEncontrada);
-      this.messageAgregar = 'Se agregó la estación con id: ' + this.idRuta;
-    }
-
   }
 
   get canSubmit() {

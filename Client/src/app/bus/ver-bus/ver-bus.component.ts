@@ -17,7 +17,9 @@ export class VerBusComponent implements OnInit {
 
   bus: Bus = null;
   errorMessage = '';
-  llegaronRutas = false;
+  llegoConductores = false;
+  llegoRutas = false;
+  llegoRutasBuses = false;
   mostrar = false;
   user = environment.user;
   rol = environment.rol;
@@ -50,6 +52,7 @@ export class VerBusComponent implements OnInit {
       console.log(result);
       this.conductores = result;
       this.countConductores = this.conductores.length;
+      this.llegoConductores = true;
     });
 
     this.route.paramMap
@@ -59,6 +62,7 @@ export class VerBusComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.rutas = result;
+      this.llegoRutas = true;
     });
 
     this.route.paramMap
@@ -68,7 +72,7 @@ export class VerBusComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.rutasxbus = result;
-      this.llegaronRutas = true;
+      this.llegoRutasBuses = true;
       this.inicializar();
     });
   }

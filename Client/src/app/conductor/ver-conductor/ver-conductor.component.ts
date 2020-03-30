@@ -15,7 +15,9 @@ import { Conductorxbus } from '../shared/conductorxbus';
 export class VerConductorComponent implements OnInit {
 
   conductor: Conductor = null;
-  llegaronBuses = false;
+  llegoConductores = false;
+  llegoBuses = false;
+  llegoCondBuses = false;
   mostrar = false;
   user = environment.user;
   rol = environment.rol;
@@ -36,6 +38,7 @@ export class VerConductorComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.conductor = result;
+      this.llegoConductores = true;
     });
 
     this.route.paramMap
@@ -45,6 +48,7 @@ export class VerConductorComponent implements OnInit {
     .subscribe(result => {
       this.buses = result;
       console.log(this.buses);
+      this.llegoBuses = true;
     });
 
     this.route.paramMap
@@ -53,7 +57,7 @@ export class VerConductorComponent implements OnInit {
     )
     .subscribe(result => {
       this.condBuses = result;
-      this.llegaronBuses = true;
+      this.llegoCondBuses = true;
       console.log(this.buses);
       this.inicializar();
     });

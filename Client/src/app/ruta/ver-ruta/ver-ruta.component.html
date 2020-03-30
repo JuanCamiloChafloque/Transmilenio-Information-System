@@ -21,6 +21,10 @@
         </ul>
       </div>
       <div class="info">
+        <label class="tag">Buses Asignados</label><br>
+        <label class="tag-info">{{countBuses}}</label><br>
+      </div>
+      <div class="info">
         <label class="tag">Horarios Asignados</label><br>
         <ul>
           <li *ngFor="let asig of buses">{{asig.diaAsignacion}} / {{asig.horaInicio}} - {{asig.horaFin}}</li>
@@ -29,7 +33,7 @@
     </div>
 
     <div class="btn-box">
-      <button [routerLink]="['/editarRuta/', ruta.id]">Editar</button>
+      <button (click)="editarRuta(ruta.id)">Editar</button>
       <button (click)=eliminarRuta(ruta.id)>Eliminar</button>
       <button (click)=volverLista()>Volver</button>
     </div>

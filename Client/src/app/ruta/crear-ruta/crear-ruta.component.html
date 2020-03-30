@@ -6,15 +6,6 @@
   <div class="form">
     <p>Nombre</p>
     <input type="text" class="field" [(ngModel)]="ruta.name">
-    <div>
-      <select *ngIf="llegoEstacion == true" [(ngModel)] = "idRuta">
-          <option *ngFor="let estacion of estaciones" [value]="estacion.id">{{estacion.id}}</option>
-      </select><br>
-    </div>
-    <button class="btn-agregar" (click)="addEstacion()">Agregar Estación</button>
-    <div class="msg-agregar">
-      {{messageAgregar}}
-    </div>
   </div>
 
   <div class="btn-box">

@@ -24,11 +24,13 @@
   </div>
 
   <div class="btn-box">
-    <button [routerLink]="['/crearRuta']">Crear Ruta</button>
+    <button (click)="crearRuta()">Crear Ruta</button>
     <button [routerLink]="['/paginaPrincipalLogin']">Volver a Pagina Principal</button>
   </div>
 
-  {{errorMessage}}
+  <div class="msg-box">
+    {{errorMessage}}
+  </div>
 
 </div>
 

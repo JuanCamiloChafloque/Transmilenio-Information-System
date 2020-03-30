@@ -58,7 +58,7 @@ public class BusXRuta {
         return id_ruta;
     }
 
-    public void setConductorId(Ruta rutaId) {
+    public void setRutaId(Ruta rutaId) {
         this.id_ruta = rutaId;
     }
     

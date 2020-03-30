@@ -1,15 +1,12 @@
 package com.example.example2.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,9 +20,9 @@ public class Ruta {
 
     private String name;
 
-    @ManyToMany(mappedBy = "rutas", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "id_ruta", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true)
     @JsonIgnore
-    private Set<Estacion> estaciones = new HashSet<Estacion>();
+    private List<RutaXEstacion> estaciones = new ArrayList<RutaXEstacion>();
 
     @OneToMany(mappedBy = "id_ruta", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
     @JsonIgnore
@@ -47,15 +44,15 @@ public class Ruta {
         this.name = name;
     }
 
-    public Set<Estacion> getEstaciones() {
+    public List<RutaXEstacion> getEstaciones() {
         return estaciones;
     }
 
-    public void setEstaciones(Set<Estacion> estaciones) {
+    public void setEstaciones(List<RutaXEstacion> estaciones) {
         this.estaciones = estaciones;
     }
 
-    public void addEstacion(Estacion pEstacion) {
+    public void addEstacion(RutaXEstacion pEstacion) {
         this.estaciones.add(pEstacion);
     }
 

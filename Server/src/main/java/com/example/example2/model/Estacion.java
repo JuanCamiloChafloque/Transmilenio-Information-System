@@ -1,13 +1,13 @@
 package com.example.example2.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,9 +20,9 @@ public class Estacion {
 
     private String nombre;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "id_estacion" , cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true)
     @JsonIgnore
-    private Set<Ruta> rutas = new HashSet<Ruta>();
+    private List<RutaXEstacion> rutas = new ArrayList<RutaXEstacion>();
 
     public Long getId() {
         return id_estacion;
@@ -40,11 +40,11 @@ public class Estacion {
         this.nombre = nombre;
     }
 
-    public Set<Ruta> getRutas() {
+    public List<RutaXEstacion> getRutas() {
         return rutas;
     }
 
-    public void setRutas(Set<Ruta> rutas) {
+    public void setRutas(List<RutaXEstacion> rutas) {
         this.rutas = rutas;
     }
 }

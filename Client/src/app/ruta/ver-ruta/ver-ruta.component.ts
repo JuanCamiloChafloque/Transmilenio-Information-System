@@ -15,11 +15,15 @@ import { Busxruta } from '../../bus/shared/busxruta';
 export class VerRutaComponent implements OnInit {
 
   ruta: Ruta = null;
-  estaciones: Estacion[] = [];
+  estaciones: Estacion[];
+  llegoRutas = false;
+  llegoEstaciones = false;
+  llegoBusesRuta = false;
+  countBuses = 0;
   errorMessage = '';
   user = environment.user;
   rol = environment.rol;
-  buses: Busxruta[] = [];
+  buses: Busxruta[];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +39,7 @@ export class VerRutaComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.ruta = result;
+      this.llegoRutas = true;
     });
 
     this.route.paramMap
@@ -44,6 +49,7 @@ export class VerRutaComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.estaciones = result;
+      this.llegoEstaciones = true;
     });
 
     this.route.paramMap
@@ -53,18 +59,34 @@ export class VerRutaComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.buses = result;
+      this.countBuses = this.buses.length;
+      this.llegoBusesRuta = true;
     });
   }
 
-  eliminarRuta(id: number) {
-    if (this.buses.length === 0) {
-      this.rutaService.remove(id).subscribe(
-        resultado => console.log('Ruta eliminada!')
-      );
-      this.router.navigate(['/paginaPrincipalRutas']);
+  editarRuta(id: number) {
+    if (this.rol === 'ADMIN') {
+      this.router.navigate([`/editarRuta/${id}`]);
     } else {
-      this.errorMessage = 'No se puede eliminar la ruta. La ruta tiene buses asignados';
+      this.errorMessage = 'Error 403. No posee los permisos para editar una ruta';
     }
+  }
+
+  eliminarRuta(id: number) {
+
+    if (this.rol === 'ADMIN') {
+      if (this.buses.length === 0) {
+        this.rutaService.remove(id).subscribe(
+          result => console.log('Ruta eliminada!')
+        );
+        this.router.navigate(['/paginaPrincipalLogin']);
+      } else {
+        this.errorMessage = 'No se puede eliminar la ruta. La ruta tiene buses asignados';
+      }
+    } else {
+      this.errorMessage = 'Error 403. No posee los permisos para eliminar una ruta';
+    }
+
   }
 
   volverLista( ) {
