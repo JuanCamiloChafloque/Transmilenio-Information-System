@@ -5,6 +5,7 @@ import { RutaService } from '../shared/ruta.service';
 import { switchMap } from 'rxjs/operators';
 import { Estacion } from '../shared/estacion';
 import { environment } from '../../../environments/environment';
+import { Busxruta } from '../../bus/shared/busxruta';
 
 @Component({
   selector: 'app-ver-ruta',
@@ -15,8 +16,10 @@ export class VerRutaComponent implements OnInit {
 
   ruta: Ruta = null;
   estaciones: Estacion[] = [];
+  errorMessage = '';
   user = environment.user;
   rol = environment.rol;
+  buses: Busxruta[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -42,13 +45,26 @@ export class VerRutaComponent implements OnInit {
       console.log(result);
       this.estaciones = result;
     });
+
+    this.route.paramMap
+    .pipe(
+      switchMap(params => this.rutaService.getBusesRuta(+params.get('id')))
+    )
+    .subscribe(result => {
+      console.log(result);
+      this.buses = result;
+    });
   }
 
   eliminarRuta(id: number) {
-    this.rutaService.remove(id).subscribe(
-      resultado => console.log('Ruta eliminado!')
-    );
-
+    if (this.buses.length === 0) {
+      this.rutaService.remove(id).subscribe(
+        resultado => console.log('Ruta eliminada!')
+      );
+      this.router.navigate(['/paginaPrincipalRutas']);
+    } else {
+      this.errorMessage = 'No se puede eliminar la ruta. La ruta tiene buses asignados';
+    }
   }
 
   volverLista( ) {

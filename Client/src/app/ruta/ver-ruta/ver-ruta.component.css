@@ -63,3 +63,10 @@ button {
   border-radius: 5px 5px 5px 5px;
 }
 
+.msg-box{
+  color: #009779;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+}
+

@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Ruta } from './Ruta';
 import { environment } from '../../../environments/environment';
 import { Estacion } from './estacion';
+import { Busxruta } from 'src/app/bus/shared/busxruta';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,12 @@ export class RutaService {
     return this.http.delete<T>(url, {withCredentials: true} ).pipe(
       catchError(this.handleError)
     );
+  }
+
+  getBusesRuta(id: number) {
+    const url = `http://localhost:8080/informacionRuta/${id}/buses`;
+    return this.get<Busxruta[]>(url);
+
   }
 
   findAll() {

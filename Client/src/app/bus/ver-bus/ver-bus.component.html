@@ -17,6 +17,12 @@
       <label class="tag">Placa</label><br>
       <label class="tag-info">{{bus.placa}}</label><br>
     </div>
+    <div class="info">
+      <label class="tag">Rutas Asignadas</label><br>
+      <ul>
+        <li *ngFor="let ruta of rutas">{{ruta.idRuta.name}}: {{ruta.diaAsignacion}} / {{ruta.horaInicio}} - {{ruta.horaFin}}</li>
+      </ul>
+    </div>
   </div>
 
   <div class="btn-box">

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Conductorxbus } from 'src/app/conductor/shared/conductorxbus';
+import { Busxruta } from '../shared/busxruta';
 
 @Component({
   selector: 'app-ver-bus',
@@ -18,6 +19,7 @@ export class VerBusComponent implements OnInit {
   user = environment.user;
   rol = environment.rol;
   conductores: Conductorxbus[] = [];
+  rutas: Busxruta[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +44,15 @@ export class VerBusComponent implements OnInit {
     .subscribe(result => {
       console.log(result);
       this.conductores = result;
+    });
+
+    this.route.paramMap
+    .pipe(
+      switchMap(params => this.busService.getRutasBus(+params.get('id')))
+    )
+    .subscribe(result => {
+      console.log(result);
+      this.rutas = result;
     });
   }
 
