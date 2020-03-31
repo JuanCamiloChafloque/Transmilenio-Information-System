@@ -103,6 +103,13 @@ export class RutaService {
     });
   }
 
+  agregarEstacion(idRuta: number, idEstacion: number) {
+    const url = `http://localhost:8080/agregarEstacion/${idRuta}/${idEstacion}`;
+    return this.put(url, {
+    });
+  }
+
+
   create(ruta: Ruta) {
     const url = `http://localhost:8080/crearRuta`;
     return this.post(url, {

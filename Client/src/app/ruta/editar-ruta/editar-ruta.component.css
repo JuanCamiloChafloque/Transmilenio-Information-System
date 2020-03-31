@@ -57,3 +57,13 @@ button {
   font-size: 12px;
   color: #009879;
 }
+
+.estaciones-box {
+  margin-top: 20px;
+  border-top: 2px solid black;
+}
+
+select {
+  width: 300px;
+  height: 30px;
+}

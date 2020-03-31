@@ -1,17 +1,25 @@
-<div *ngIf="ruta != null && rol == 'ADMIN' && user != undefined">
+<div *ngIf="llegoEstaciones == true">
+  <div *ngIf="ruta != null && rol == 'ADMIN' && user != undefined">
 
-  <div class="title">
-    <h2>Editar Ruta</h2>
+    <div class="title">
+      <h2>Editar Ruta</h2>
+    </div>
+
+    <div class="form">
+      <p>Nombre</p>
+      <input type="text" class="field" [(ngModel)]="ruta.name">
+      <div class="estaciones-box">
+        <p>Estación a asignar</p>
+        <select [(ngModel)] = "estId">
+          <option selected default>Estación a escoger</option>
+          <option *ngFor="let est of estaciones">{{est.id}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-box">
+      <button (click)=edit()>Guardar</button>
+      <button (click)=cancel()>Cancelar</button><br>
+    </div>
   </div>
-
-  <div class="form">
-    <p>Nombre</p>
-    <input type="text" class="field" [(ngModel)]="ruta.name">
-  </div>
-
-  <div class="btn-box">
-    <button (click)=edit()>Guardar</button>
-    <button (click)=cancel()>Cancelar</button><br>
-  </div>
-
 </div>

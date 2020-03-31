@@ -24,7 +24,7 @@ public class RutaXEstacion {
         return id_ruta;
     }
 
-    public void serRutaId(Ruta rutaId) {
+    public void setRutaId(Ruta rutaId) {
         this.id_ruta = rutaId;
     }
     
@@ -34,6 +34,10 @@ public class RutaXEstacion {
 
     public void setEstacionId(Estacion estacionId) {
         this.id_estacion = estacionId;
+    }
+
+    public void setEmbId(RutaEstacionId id){
+        this.id = id;
     }
     
 }

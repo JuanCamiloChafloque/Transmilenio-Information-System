@@ -14,6 +14,9 @@ import { environment } from '../../../environments/environment';
 export class EditarRutaComponent implements OnInit {
 
   ruta: Ruta = null;
+  estaciones: Estacion[];
+  llegoEstaciones = false;
+  estId = '';
   user = environment.user;
   rol = environment.rol;
 
@@ -31,9 +34,30 @@ export class EditarRutaComponent implements OnInit {
     .subscribe(result => {
       this.ruta = result;
     });
+
+    this.route.paramMap
+    .pipe(
+      switchMap(params => this.rutaService.getAllEstaciones())
+    )
+    .subscribe(result => {
+      this.estaciones = result;
+      this.llegoEstaciones = true;
+    });
   }
 
   edit() {
+
+    if (this.estId !== '') {
+      this.rutaService.agregarEstacion(this.ruta.id, +this.estId).subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {
+        console.error(error);
+      }
+      );
+    }
+
     this.rutaService.update(this.ruta).subscribe(
       result => {
         console.log(result);

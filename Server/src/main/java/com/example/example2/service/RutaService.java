@@ -2,7 +2,9 @@ package com.example.example2.service;
 
 import com.example.example2.model.BusXRuta;
 import com.example.example2.model.Estacion;
+import com.example.example2.model.EstacionRepository;
 import com.example.example2.model.Ruta;
+import com.example.example2.model.RutaEstacionId;
 import com.example.example2.model.RutaRepository;
 import com.example.example2.model.RutaXEstacion;
 
@@ -27,6 +29,9 @@ public class RutaService {
 
     @Autowired
     private RutaRepository repository;
+
+    @Autowired 
+    private EstacionRepository estacionRepository;
 
     @GetMapping("/paginaPrincipalRutas")
     public Iterable<Ruta> getRutas() {
@@ -70,7 +75,24 @@ public class RutaService {
     public Ruta editarRuta(@PathVariable("id") Long rutaId, @RequestBody Ruta rutaData) {
         Ruta rutaEncontrada = buscarRuta(rutaId);
         rutaEncontrada.setName(rutaData.getName());
-        //rutaEncontrada.getEstaciones().addAll(rutaData.getEstaciones());
+
+        return repository.save(rutaEncontrada);
+    }
+
+    @PutMapping("/agregarEstacion/{idR}/{idE}")
+    public Ruta agregarEstacion(@PathVariable("idR") Long idRuta, @PathVariable("idE") Long idEstacion){        
+        Ruta rutaEncontrada = repository.findById(idRuta).get();
+        Estacion estacionEncontrada = estacionRepository.findById(idEstacion).get();
+        
+        RutaXEstacion nuevo = new RutaXEstacion();
+        RutaEstacionId id = new RutaEstacionId();
+        id.setIdRuta(idRuta);
+        id.setIdEstacion(idEstacion);
+        nuevo.setEmbId(id);
+        nuevo.setRutaId(rutaEncontrada);
+        nuevo.setEstacionId(estacionEncontrada);
+        
+        rutaEncontrada.getEstaciones().add(nuevo);
 
         return repository.save(rutaEncontrada);
     }
