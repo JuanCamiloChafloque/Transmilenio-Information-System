@@ -22,7 +22,6 @@ export class MainPageLoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.logSesion.getUsuarios().subscribe(
       results => {
         this.usuarios = results;

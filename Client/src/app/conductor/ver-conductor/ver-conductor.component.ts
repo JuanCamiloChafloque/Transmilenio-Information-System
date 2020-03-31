@@ -15,12 +15,9 @@ import { Conductorxbus } from '../shared/conductorxbus';
 export class VerConductorComponent implements OnInit {
 
   conductor: Conductor = null;
-  llegoConductores = false;
-  llegoBuses = false;
-  llegoCondBuses = false;
-  mostrar = false;
   user = environment.user;
   rol = environment.rol;
+  inicializado = false;
   buses: Bus[];
   condBuses: Conductorxbus [];
 
@@ -36,52 +33,47 @@ export class VerConductorComponent implements OnInit {
       switchMap(params => this.conductorService.findById(+params.get('id')))
     )
     .subscribe(result => {
-      console.log(result);
       this.conductor = result;
-      this.llegoConductores = true;
+      this.recuperarBuses();
     });
+  }
 
+  recuperarBuses() {
     this.route.paramMap
     .pipe(
       switchMap(params => this.conductorService.getBusesConductor(+params.get('id')))
     )
     .subscribe(result => {
       this.buses = result;
-      console.log(this.buses);
-      this.llegoBuses = true;
+      this.inicializarBuses();
     });
+  }
 
+  inicializarBuses() {
     this.route.paramMap
     .pipe(
       switchMap(params => this.conductorService.getBusesxconductor(+params.get('id')))
     )
     .subscribe(result => {
       this.condBuses = result;
-      this.llegoCondBuses = true;
-      console.log(this.buses);
-      this.inicializar();
+      this.llenarBuses();
     });
   }
 
-  inicializar() {
-
+  llenarBuses() {
     for (let i = 0; i < this.buses.length; i++) {
       this.buses[i].diaAsignacion = this.condBuses[i].diaAsignacion;
       this.buses[i].horaInicio = this.condBuses[i].horaInicio;
       this.buses[i].horaFin = this.condBuses[i].horaFin;
     }
-
-    console.log('Buses: ' + this.buses);
-    this.mostrar = true;
+    this.inicializado = true;
     environment.buses = this.buses;
-
   }
 
   eliminarConductor(id: number) {
     this.conductorService.remove(id).subscribe(
       resultado => console.log('Conductor eliminado!')
     );
-
   }
 
   volverLista( ) {

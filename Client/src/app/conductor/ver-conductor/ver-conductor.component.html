@@ -1,42 +1,41 @@
-<div *ngIf="llegoConductores == true && llegoBuses == true && llegoCondBuses == true">
-  <div *ngIf="conductor != null && rol == 'COORDINADOR' && user != undefined">
-    <div class="title">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1024px-User_with_smile.svg.png" alt="User Logo...">
-      <h2>{{conductor.name}}</h2>
+<div *ngIf="conductor != null && rol == 'COORDINADOR' && user != undefined && inicializado == true">
+  <div class="title">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1024px-User_with_smile.svg.png" alt="User Logo...">
+    <h2>{{conductor.name}}</h2>
+  </div>
+  <div class="info-box">
+    <div class="info">
+      <label class="tag">Id</label><br>
+      <label>{{conductor.id}}</label><br>
     </div>
-    <div class="info-box">
-      <div class="info">
-        <label class="tag">Id</label><br>
-        <label>{{conductor.id}}</label><br>
-      </div>
-      <div class="info">
-        <label class="tag">Nombre</label><br>
-        <label class="tag-info">{{conductor.name}}</label><br>
-      </div>
-      <div class="info">
-        <label class="tag">Cedula</label><br>
-        <label class="tag-info">{{conductor.cedula}}</label><br>
-      </div>
-      <div class="info">
-        <label class="tag">Telefono</label><br>
-        <label class="tag-info">{{conductor.telefono}}</label><br>
-      </div>
-      <div class="info">
-        <label class="tag">Dirección</label><br>
-        <label class="tag-info">{{conductor.direccion}}</label><br>
-      </div>
-      <div *ngIf="mostrar == true" class="info">
-        <label class="tag">Buses Asignados</label><br>
-        <ul>
-          <li *ngFor="let asig of buses">Bus #{{asig.id}}: {{asig.diaAsignacion}} / {{asig.horaInicio}} - {{asig.horaFin}}</li>
-        </ul>
-      </div>
+    <div class="info">
+      <label class="tag">Nombre</label><br>
+      <label class="tag-info">{{conductor.name}}</label><br>
     </div>
-    <div class="btn-box">
-      <button [routerLink]="['/editarConductor/', conductor.id]">Editar</button>
-      <button [routerLink]="['/paginaPrincipalLogin']" (click)=eliminarConductor(conductor.id)>Eliminar</button>
-      <button (click)=volverLista()>Volver</button>
+    <div class="info">
+      <label class="tag">Cedula</label><br>
+      <label class="tag-info">{{conductor.cedula}}</label><br>
+    </div>
+    <div class="info">
+      <label class="tag">Telefono</label><br>
+      <label class="tag-info">{{conductor.telefono}}</label><br>
+    </div>
+    <div class="info">
+      <label class="tag">Dirección</label><br>
+      <label class="tag-info">{{conductor.direccion}}</label><br>
+    </div>
+    <div class="info">
+      <label class="tag">Buses Asignados</label><br>
+      <ul>
+        <li *ngFor="let asig of buses">Bus #{{asig.id}}: {{asig.diaAsignacion}} / {{asig.horaInicio}} - {{asig.horaFin}}</li>
+      </ul>
     </div>
   </div>
+  <div class="btn-box">
+    <button [routerLink]="['/editarConductor/', conductor.id]">Editar</button>
+    <button [routerLink]="['/paginaPrincipalLogin']" (click)=eliminarConductor(conductor.id)>Eliminar</button>
+    <button (click)=volverLista()>Volver</button>
+  </div>
 </div>
+
 

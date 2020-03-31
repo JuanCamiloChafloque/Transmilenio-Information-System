@@ -18,7 +18,7 @@ export class EditarConductorComponent implements OnInit {
   conductor: Conductor = null;
   buses: Bus[];
   condBuses: Conductorxbus[];
-  llegoBuses = false;
+  inicializado = false;
   errorMessage = '';
   diaAsignar = '';
   busId = '';
@@ -41,22 +41,37 @@ export class EditarConductorComponent implements OnInit {
       )
       .subscribe(result => {
         this.conductor = result;
+        this.recuperarBuses();
       });
+  }
 
+  recuperarBuses() {
     this.route.paramMap
-      .pipe(
-        switchMap(params => this.busService.findAll())
-      )
-      .subscribe(result => {
-        this.buses = result;
-        this.llegoBuses = true;
-      });
+    .pipe(
+      switchMap(params => this.busService.findAll())
+    )
+    .subscribe(result => {
+      this.buses = result;
+      this.inicializarBuses();
+    });
+  }
+
+  inicializarBuses() {
+    this.route.paramMap
+    .pipe(
+      switchMap(params => this.conductorService.getBusesxconductor(+params.get('id')))
+    )
+    .subscribe(result => {
+      this.condBuses = result;
+      this.inicializado = true;
+    });
   }
 
   edit() {
 
+    this.buses = environment.buses;
+
     if (this.diaAsignar !== '' && this.horaInicio !== '' && this.horaFin !== '') {
-      this.buses = environment.buses;
       const esValido = this.validarHorario();
       if (esValido === true) {
         this.errorMessage = '';
@@ -105,7 +120,6 @@ export class EditarConductorComponent implements OnInit {
           esValido = false;
         }
       }
-
     }
     return esValido;
   }
