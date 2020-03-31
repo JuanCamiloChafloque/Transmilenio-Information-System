@@ -1,20 +1,33 @@
-<div *ngIf="bus != null && rol == 'COORDINADOR' && user != undefined">
+<div *ngIf="llegoRutas == true">
+  <div *ngIf="bus != null && rol == 'COORDINADOR' && user != undefined">
 
-  <div class="title">
-    <h2>Editar Bus</h2>
+    <div class="title">
+      <h2>Editar Bus</h2>
+    </div>
+
+    <div class="form">
+      <p>Modelo</p>
+      <input type="text" class="field" [(ngModel)]="bus.modelo">
+      <p>Placa</p>
+      <input type="text" class="field" [(ngModel)]="bus.placa">
+      <div class="ruta-box">
+        <p>Ruta a asignar</p>
+        <select [(ngModel)] = "rutaId">
+          <option selected default>Ruta a escoger</option>
+          <option *ngFor="let ruta of rutas">{{ruta.id}}</option>
+        </select>
+        <p>Dia a asignar</p>
+        <input type="text" class="field" [(ngModel)]="diaAsignar">
+        <p>Hora de inicio</p>
+        <input type="text" class="field" [(ngModel)]="horaInicio">
+        <p>Hora final</p>
+        <input type="text" class="field" [(ngModel)]="horaFin">
+      </div>
+    </div>
+
+    <div class="btn-box">
+      <button (click)=edit()>Guardar</button>
+      <button (click)=cancel()>Cancelar</button><br>
+    </div>
   </div>
-
-  <div class="form">
-    <p>Modelo</p>
-    <input type="text" class="field" [(ngModel)]="bus.modelo">
-    <p>Placa</p>
-    <input type="text" class="field" [(ngModel)]="bus.placa">
-
-  </div>
-
-  <div class="btn-box">
-    <button (click)=edit()>Guardar</button>
-    <button (click)=cancel()>Cancelar</button><br>
-  </div>
-
 </div>

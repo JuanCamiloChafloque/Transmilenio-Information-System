@@ -99,6 +99,15 @@ export class BusService {
     });
   }
 
+  agregarRuta(idBus: number, idRuta: number, diaAsig: string, horaIni: string, horaF: string) {
+    const url = `http://localhost:8080/agregarRuta/${idBus}/${idRuta}`;
+    return this.put(url,{
+      diaAsignacion: diaAsig,
+      horaInicio: horaIni,
+      horaFin: horaF
+    });
+  }
+
   create(bus: Bus) {
     const url = `http://localhost:8080/crearBus`;
     return this.post(url, {

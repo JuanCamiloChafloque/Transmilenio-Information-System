@@ -69,5 +69,9 @@ public class BusXRuta {
     public void setBusId(Bus busId) {
         this.id_bus = busId;
     }
+
+    public void setEmbId(BusRutaId id){
+        this.id = id;
+    }
     
 }

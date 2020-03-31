@@ -2,10 +2,13 @@ package com.example.example2.service;
 
 import com.example.example2.model.Bus;
 import com.example.example2.model.BusRepository;
+import com.example.example2.model.BusRutaId;
 import com.example.example2.model.BusXRuta;
 import com.example.example2.model.Conductor;
 import com.example.example2.model.ConductorXBus;
+import com.example.example2.model.HorarioRuta;
 import com.example.example2.model.Ruta;
+import com.example.example2.model.RutaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,9 @@ public class BusService {
 
     @Autowired
     private BusRepository repository;
+
+    @Autowired
+    private RutaRepository rutaRepository;
 
     @GetMapping("/paginaPrincipalBuses")
     public Iterable<Bus> getBuses() {
@@ -77,6 +83,27 @@ public class BusService {
         Bus busEncontrado = buscarBus(busId);
         busEncontrado.setModelo(busData.getModelo());
         busEncontrado.setPlaca(busData.getPlaca());
+
+        return repository.save(busEncontrado);
+    }
+
+    @PutMapping("/agregarRuta/{idB}/{idR}")
+    public Bus agregarRuta(@PathVariable("idB") Long idBus, @PathVariable("idR") Long idRuta, @RequestBody HorarioRuta horario){        
+        Bus busEncontrado = repository.findById(idBus).get();
+        Ruta rutaEncontrada = rutaRepository.findById(idRuta).get();
+        
+        BusXRuta nuevo = new BusXRuta();
+        BusRutaId id = new BusRutaId();
+        id.setIdBus(idBus);
+        id.setIdRuta(idRuta);
+        nuevo.setEmbId(id);
+        nuevo.setBusId(busEncontrado);
+        nuevo.setRutaId(rutaEncontrada);
+        nuevo.setDiaAsignacion(horario.getDiaAsignacion());
+        nuevo.setHoraInicio(horario.getHoraInicio());
+        nuevo.setHoraFin(horario.getHoraFin());
+        
+        busEncontrado.getRutas().add(nuevo);
 
         return repository.save(busEncontrado);
     }
