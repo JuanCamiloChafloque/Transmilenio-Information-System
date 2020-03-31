@@ -105,4 +105,9 @@ export class ConductorService {
     });
   }
 
+  agregarBus(idCond: number, idBus: number, diaAsignacion: string) {
+    const url = `http://localhost:8080/agregarBus/${idCond}/${idBus}`;
+    return this.put(url, diaAsignacion);
+  }
+
 }

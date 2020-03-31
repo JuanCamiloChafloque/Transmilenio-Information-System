@@ -73,4 +73,8 @@ public class Conductor {
     public void setBuses(List<ConductorXBus> buses) {
         this.buses = buses;
     }
+
+    public void addBus(ConductorXBus bus) {
+        this.buses.add(bus);
+    }
 }

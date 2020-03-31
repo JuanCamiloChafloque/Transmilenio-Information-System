@@ -1,7 +1,9 @@
 package com.example.example2.service;
 
 import com.example.example2.model.Bus;
+import com.example.example2.model.BusRepository;
 import com.example.example2.model.Conductor;
+import com.example.example2.model.ConductorBusId;
 import com.example.example2.model.ConductorRepository;
 import com.example.example2.model.ConductorXBus;
 
@@ -26,6 +28,8 @@ public class ConductorService {
 
     @Autowired
     private ConductorRepository repository;
+    @Autowired
+    private BusRepository busRepository;
 
     @GetMapping("/paginaPrincipalConductores")
     public Iterable<Conductor> getConductores() {
@@ -66,10 +70,29 @@ public class ConductorService {
         conductorEncontrado.setCedula(conductorData.getCedula());
         conductorEncontrado.setTelefono(conductorData.getTelefono());
         conductorEncontrado.setDireccion(conductorData.getDireccion());
-        //conductorEncontrado.getBuses().addAll(conductorData.getBuses());
 
         return repository.save(conductorEncontrado);
     }
+
+    @PutMapping("/agregarBus/{idC}/{idB}")
+    public Conductor agregarBus(@PathVariable("idC") Long idCond, @PathVariable("idB") Long idBus, @RequestBody String dia){        
+        Conductor condEncontrado = repository.findById(idCond).get();
+        Bus busEncontrado = busRepository.findById(idBus).get();
+        
+        ConductorXBus nuevo = new ConductorXBus();
+        ConductorBusId id = new ConductorBusId();
+        id.setIdBus(idBus);
+        id.setIdConductor(idCond);
+        nuevo.setEmbId(id);
+        nuevo.setBusId(busEncontrado);
+        nuevo.setConductorId(condEncontrado);
+        nuevo.setDiaAsignacion(dia);
+        condEncontrado.getBuses().add(nuevo);
+
+        return repository.save(condEncontrado);
+    }
+
+    
 
     @DeleteMapping("/paginaPrincipalConductores/{id}")
     public void eliminarConductor(@PathVariable("id") Long conductorId) {

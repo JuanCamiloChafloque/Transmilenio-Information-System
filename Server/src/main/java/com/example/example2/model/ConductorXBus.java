@@ -47,5 +47,9 @@ public class ConductorXBus {
     public void setBusId(Bus busId) {
         this.id_bus = busId;
     }
+
+    public void setEmbId(ConductorBusId id){
+        this.id = id;
+    }
     
 }

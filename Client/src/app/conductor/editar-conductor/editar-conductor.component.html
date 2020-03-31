@@ -1,24 +1,34 @@
-<div *ngIf="conductor != null && rol == 'COORDINADOR' && user != undefined">
+<div *ngIf="llegoBuses == true">
+  <div *ngIf="conductor != null && rol == 'COORDINADOR' && user != undefined">
 
-  <div class="title">
-    <h2>Editar Conductor</h2>
+    <div class="title">
+      <h2>Editar Conductor</h2>
+    </div>
+
+    <div class="form">
+      <p>Nombre</p>
+      <input type="text" class="field" [(ngModel)]="conductor.name">
+      <p>Cedula</p>
+      <input type="text" class="field" [(ngModel)]="conductor.cedula">
+      <p>Telefono</p>
+      <input type="text" class="field" [(ngModel)]="conductor.telefono">
+      <p>Dirección</p>
+      <input type="text" class="field" [(ngModel)]="conductor.direccion">
+      <div class="bus-box">
+        <p>Bus a asignar</p>
+        <select [(ngModel)] = "busId">
+          <option selected default>Bus a escoger</option>
+          <option *ngFor="let bus of buses">{{bus.id}}</option>
+        </select>
+        <p>Dia a asignar</p>
+        <input type="text" class="field" [(ngModel)]="diaAsignar">
+      </div>
+    </div>
+
+    <div class="btn-box">
+      <button (click)=edit()>Guardar</button>
+      <button (click)=cancel()>Cancelar</button><br>
+    </div>
   </div>
-
-  <div class="form">
-    <p>Nombre</p>
-    <input type="text" class="field" [(ngModel)]="conductor.name">
-    <p>Cedula</p>
-    <input type="text" class="field" [(ngModel)]="conductor.cedula">
-    <p>Telefono</p>
-    <input type="text" class="field" [(ngModel)]="conductor.telefono">
-    <p>Dirección</p>
-    <input type="text" class="field" [(ngModel)]="conductor.direccion">
-  </div>
-
-  <div class="btn-box">
-    <button (click)=edit()>Guardar</button>
-    <button (click)=cancel()>Cancelar</button><br>
-  </div>
-
 </div>
 

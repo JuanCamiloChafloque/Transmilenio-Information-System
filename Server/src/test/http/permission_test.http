@@ -18,11 +18,16 @@ GET http://localhost:8080/informacionConductor/-1/buses
 GET http://localhost:8080/informacionRuta/-1
 
 ###
-GET http://localhost:8080/informacionEstacion/-4
+GET http://localhost:8080/informacionBus/-2/conductores
 
 ###
-PUT http://localhost:8080/informacionRuta/-1/-4 HTTP/1.1
-Accept: */*
+PUT http://localhost:8080/agregarBus/-2/-2
+Content-Type: application/json
+
+{
+    "dia": "Miercoles"
+}
+
 
 ###
 POST http://localhost:8080/logout HTTP/1.1

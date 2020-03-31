@@ -37,6 +37,16 @@
   margin-left: 480px;
 }
 
+.bus-box {
+  margin-top: 20px;
+  border-top: 2px solid black;
+}
+
+select {
+  width: 300px;
+  height: 30px;
+}
+
 button {
   height: 40px;
   background: black;
