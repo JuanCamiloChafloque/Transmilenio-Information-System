@@ -1,7 +1,6 @@
 <div *ngIf="rol == 'COORDINADOR' && user != undefined" class="title">
   <h2>Crear Conductor</h2>
 </div>
-
 <div class="form">
   <p>Nombre</p>
   <input type="text" class="field" [(ngModel)]="conductor.name">
@@ -12,12 +11,10 @@
   <p>Dirección</p>
   <input type="text" class="field" [(ngModel)]="conductor.direccion">
 </div>
-
 <div class="btn-box">
   <button (click)=create() [disabled]="!canSubmit">Confirmar</button>
   <button (click)=cancel()>Cancelar</button><br>
 </div>
-
 <div class="msg-box">
   {{message}}
 </div>

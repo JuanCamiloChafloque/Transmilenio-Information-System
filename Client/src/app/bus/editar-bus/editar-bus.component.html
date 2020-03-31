@@ -1,10 +1,8 @@
 <div *ngIf="llegoRutas == true">
   <div *ngIf="bus != null && rol == 'COORDINADOR' && user != undefined">
-
     <div class="title">
       <h2>Editar Bus</h2>
     </div>
-
     <div class="form">
       <p>Modelo</p>
       <input type="text" class="field" [(ngModel)]="bus.modelo">
@@ -24,7 +22,6 @@
         <input type="text" class="field" [(ngModel)]="horaFin">
       </div>
     </div>
-
     <div class="btn-box">
       <button (click)=edit()>Guardar</button>
       <button (click)=cancel()>Cancelar</button><br>

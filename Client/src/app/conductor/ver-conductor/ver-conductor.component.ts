@@ -21,7 +21,7 @@ export class VerConductorComponent implements OnInit {
   mostrar = false;
   user = environment.user;
   rol = environment.rol;
-  buses: Bus [];
+  buses: Bus[];
   condBuses: Conductorxbus [];
 
   constructor(
@@ -67,10 +67,13 @@ export class VerConductorComponent implements OnInit {
 
     for (let i = 0; i < this.buses.length; i++) {
       this.buses[i].diaAsignacion = this.condBuses[i].diaAsignacion;
+      this.buses[i].horaInicio = this.condBuses[i].horaInicio;
+      this.buses[i].horaFin = this.condBuses[i].horaFin;
     }
 
     console.log('Buses: ' + this.buses);
     this.mostrar = true;
+    environment.buses = this.buses;
 
   }
 

@@ -1,10 +1,8 @@
 <div *ngIf="llegoEstaciones == true">
   <div *ngIf="ruta != null && rol == 'ADMIN' && user != undefined">
-
     <div class="title">
       <h2>Editar Ruta</h2>
     </div>
-
     <div class="form">
       <p>Nombre</p>
       <input type="text" class="field" [(ngModel)]="ruta.name">
@@ -16,7 +14,6 @@
         </select>
       </div>
     </div>
-
     <div class="btn-box">
       <button (click)=edit()>Guardar</button>
       <button (click)=cancel()>Cancelar</button><br>

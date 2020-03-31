@@ -6,7 +6,7 @@ import com.example.example2.model.BusRutaId;
 import com.example.example2.model.BusXRuta;
 import com.example.example2.model.Conductor;
 import com.example.example2.model.ConductorXBus;
-import com.example.example2.model.HorarioRuta;
+import com.example.example2.model.Horario;
 import com.example.example2.model.Ruta;
 import com.example.example2.model.RutaRepository;
 
@@ -88,7 +88,7 @@ public class BusService {
     }
 
     @PutMapping("/agregarRuta/{idB}/{idR}")
-    public Bus agregarRuta(@PathVariable("idB") Long idBus, @PathVariable("idR") Long idRuta, @RequestBody HorarioRuta horario){        
+    public Bus agregarRuta(@PathVariable("idB") Long idBus, @PathVariable("idR") Long idRuta, @RequestBody Horario horario){        
         Bus busEncontrado = repository.findById(idBus).get();
         Ruta rutaEncontrada = rutaRepository.findById(idRuta).get();
         

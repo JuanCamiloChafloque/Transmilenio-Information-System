@@ -1,9 +1,7 @@
 <div *ngIf="rol == 'COORDINADOR' && user != undefined" class="container">
-
   <div class="title">
     <h2>Buses</h2>
   </div>
-
   <div class="tbl-box">
     <table class="content-table">
       <thead>
@@ -24,12 +22,9 @@
       </tbody>
     </table>
   </div>
-
   <div class="btn-box">
     <button [routerLink]="['/crearBus']">Crear Bus</button>
     <button [routerLink]="['/paginaPrincipalLogin']">Volver a Pagina Principal</button>
   </div>
-
   {{errorMessage}}
-
 </div>

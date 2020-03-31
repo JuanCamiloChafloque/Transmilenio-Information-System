@@ -4,7 +4,6 @@
       <img src="https://static.vecteezy.com/system/resources/previews/000/350/002/non_2x/route-vector-icon.jpg" alt="Ruta Logo...">
       <h2>Ruta: {{ruta.id}}</h2>
     </div>
-
     <div class="info-box">
       <div class="info">
         <label class="tag">Id</label><br>
@@ -31,13 +30,11 @@
         </ul>
       </div>
     </div>
-
     <div class="btn-box">
       <button (click)="editarRuta(ruta.id)">Editar</button>
       <button (click)=eliminarRuta(ruta.id)>Eliminar</button>
       <button (click)=volverLista()>Volver</button>
     </div>
-
     <div class="msg-box">
       {{errorMessage}}
     </div>

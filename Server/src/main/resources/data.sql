@@ -16,16 +16,16 @@ insert into bus (id_bus, placa, modelo) values (-8, 'Placa8', 'Modelo8');
 insert into bus (id_bus, placa, modelo) values (-9, 'Placa9', 'Modelo9');
 insert into bus (id_bus, placa, modelo) values (-10, 'Placa10', 'Modelo10');
 
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', -1, -1);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', -1, -4);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Martes', -2, -6);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', -2, -3);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Miercoles', -3, -7);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Miercoles', -3, -9);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', -4, -10);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Jueves', -4, -9);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Viernes', -5, -2);
-insert into conductorxbus (dia_asignacion, id_conductor_id_conductor, id_bus_id_bus) values ('Sabado', -6, -8);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', '9:00', '19:00', -1, -1);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', '11:00', '20:00', -1, -4);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Martes', '13:00', '17:00', -2, -6);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', '7:00', '10:00', -2, -3);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Miercoles', '4:00', '7:00', -3, -7);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Miercoles', '7:00', '18:00', -3, -9);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Lunes', '11:00', '21:00', -4, -10);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Jueves', '9:00', '20:00', -4, -9);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Viernes', '8:00', '16:00', -5, -2);
+insert into conductorxbus (dia_asignacion, hora_inicio, hora_fin, id_conductor_id_conductor, id_bus_id_bus) values ('Sabado', '7:00', '19:00', -6, -8);
 
 insert into estacion (id_estacion, nombre) values (-1, 'Estacion1');
 insert into estacion (id_estacion, nombre) values (-2, 'Estacion2');

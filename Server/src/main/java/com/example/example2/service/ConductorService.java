@@ -6,6 +6,7 @@ import com.example.example2.model.Conductor;
 import com.example.example2.model.ConductorBusId;
 import com.example.example2.model.ConductorRepository;
 import com.example.example2.model.ConductorXBus;
+import com.example.example2.model.Horario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +76,7 @@ public class ConductorService {
     }
 
     @PutMapping("/agregarBus/{idC}/{idB}")
-    public Conductor agregarBus(@PathVariable("idC") Long idCond, @PathVariable("idB") Long idBus, @RequestBody String dia){        
+    public Conductor agregarBus(@PathVariable("idC") Long idCond, @PathVariable("idB") Long idBus, @RequestBody Horario horario){        
         Conductor condEncontrado = repository.findById(idCond).get();
         Bus busEncontrado = busRepository.findById(idBus).get();
         
@@ -86,7 +87,9 @@ public class ConductorService {
         nuevo.setEmbId(id);
         nuevo.setBusId(busEncontrado);
         nuevo.setConductorId(condEncontrado);
-        nuevo.setDiaAsignacion(dia);
+        nuevo.setDiaAsignacion(horario.getDiaAsignacion());
+        nuevo.setHoraInicio(horario.getHoraInicio());
+        nuevo.setHoraFin(horario.getHoraFin());
         condEncontrado.getBuses().add(nuevo);
 
         return repository.save(condEncontrado);

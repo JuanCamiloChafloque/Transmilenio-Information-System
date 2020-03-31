@@ -1,11 +1,9 @@
 <div *ngIf="llegoConductores == true && llegoBuses == true && llegoCondBuses == true">
-
   <div *ngIf="conductor != null && rol == 'COORDINADOR' && user != undefined">
     <div class="title">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/User_with_smile.svg/1024px-User_with_smile.svg.png" alt="User Logo...">
       <h2>{{conductor.name}}</h2>
     </div>
-
     <div class="info-box">
       <div class="info">
         <label class="tag">Id</label><br>
@@ -30,18 +28,15 @@
       <div *ngIf="mostrar == true" class="info">
         <label class="tag">Buses Asignados</label><br>
         <ul>
-          <li *ngFor="let asig of buses">Bus #{{asig.id}}: {{asig.diaAsignacion}}</li>
+          <li *ngFor="let asig of buses">Bus #{{asig.id}}: {{asig.diaAsignacion}} / {{asig.horaInicio}} - {{asig.horaFin}}</li>
         </ul>
       </div>
     </div>
-
     <div class="btn-box">
       <button [routerLink]="['/editarConductor/', conductor.id]">Editar</button>
       <button [routerLink]="['/paginaPrincipalLogin']" (click)=eliminarConductor(conductor.id)>Eliminar</button>
       <button (click)=volverLista()>Volver</button>
     </div>
-
   </div>
-
 </div>
 

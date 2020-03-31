@@ -5,6 +5,8 @@ export class Conductorxbus {
   constructor(
     public idConductor: Conductor,
     public idBus: Bus,
-    public diaAsignacion: string
+    public diaAsignacion: string,
+    public horaInicio: string,
+    public horaFin: string
   ) {}
 }

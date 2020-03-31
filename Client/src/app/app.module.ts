@@ -50,7 +50,7 @@ import { RutaService } from './ruta/shared/ruta.service';
   providers: [
     ConductorService,
     BusService,
-    RutaService
+    RutaService,
   ],
   bootstrap: [AppComponent]
 })

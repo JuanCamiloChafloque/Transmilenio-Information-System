@@ -2,17 +2,14 @@
   <div class="title">
     <h2>Crear Ruta</h2>
   </div>
-
   <div class="form">
     <p>Nombre</p>
     <input type="text" class="field" [(ngModel)]="ruta.name">
   </div>
-
   <div class="btn-box">
     <button (click)=create() [disabled]="!canSubmit">Confirmar</button>
     <button (click)=cancel()>Cancelar</button><br>
   </div>
-
   <div class="msg-box">
     {{message}}
   </div>

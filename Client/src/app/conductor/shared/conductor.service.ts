@@ -105,9 +105,13 @@ export class ConductorService {
     });
   }
 
-  agregarBus(idCond: number, idBus: number, diaAsignacion: string) {
+  agregarBus(idCond: number, idBus: number, diaAsig: string, horaIni: string, horaF: string) {
     const url = `http://localhost:8080/agregarBus/${idCond}/${idBus}`;
-    return this.put(url, diaAsignacion);
+    return this.put(url, {
+      diaAsignacion: diaAsig,
+      horaInicio: horaIni,
+      horaFin: horaF
+    });
   }
 
 }

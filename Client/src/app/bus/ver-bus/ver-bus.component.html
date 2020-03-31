@@ -1,11 +1,9 @@
 <div *ngIf="llegoConductores == true && llegoRutas == true && llegoRutasBuses == true">
-
   <div *ngIf="bus != null && rol == 'COORDINADOR' && user != undefined">
     <div class="title">
       <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Aiga_bus_on_green_circle.svg" alt="Bus Logo...">
       <h2>Bus: {{bus.id}}</h2>
     </div>
-
     <div class="info-box">
       <div class="info">
         <label class="tag">Id</label><br>
@@ -30,18 +28,14 @@
         </ul>
       </div>
     </div>
-
     <div class="btn-box">
       <button [routerLink]="['/editarBus/', bus.id]">Editar</button>
       <button (click)=eliminarBus(bus.id)>Eliminar</button>
       <button (click)=volverLista()>Volver</button>
     </div>
-
     <div class="msg-box">
       {{errorMessage}}
     </div>
-
   </div>
-
 </div>
 

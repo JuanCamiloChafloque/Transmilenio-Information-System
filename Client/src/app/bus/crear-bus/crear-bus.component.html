@@ -1,19 +1,16 @@
 <div *ngIf="rol == 'COORDINADOR' && user != undefined" class="title">
   <h2>Crear Bus</h2>
 </div>
-
 <div class="form">
   <p>Modelo</p>
   <input type="text" class="field" [(ngModel)]="bus.modelo">
   <p>Placa</p>
   <input type="text" class="field" [(ngModel)]="bus.placa">
 </div>
-
 <div class="btn-box">
   <button (click)=create() [disabled]="!canSubmit">Confirmar</button>
   <button (click)=cancel()>Cancelar</button><br>
 </div>
-
 <div class="msg-box">
   {{message}}
 </div>
